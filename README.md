@@ -11,6 +11,10 @@ data or information) representation format which is viewable by humans.
  - inclusive of every syntax category
  - internationalized
  - includes (optional) `deprecated`, `obsolete`, `unknown` and `alias_of` fields
+ - composed of only the following characters: `[a-z0-9_]` that is `0` to `9`, lowercase `a` to
+   `z`, and `_` (underscore)
+ - trivially convertible into a variable name in most programming languages - by simply add an
+   alphabetic prefix
 
 Syntax categories include:
  - programming languages, including low level (e.g. asm) languages

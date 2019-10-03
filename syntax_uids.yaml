@@ -27,28 +27,33 @@
 #
 # Or just run with the below, and expand/deprecate as deemed necessary?
 
-# Each syntax_uid key (in the map named "uids") identifies a computer language for the purposes of
-# syntax highlighting.
+# Each syntax_uid key (in the map named "uids") identifies a computer language for the purposes
+# of syntax highlighting.  This reflects the lang-list and EditorConfig focus on the end user.
 #
-# This list is based on the Vim syntax highlighting list, a list of ~600 syntax rulesets, with
-# some dating back many years - the oldest appears to be monk.vim: Last Change: April 30, 1998,
-# so, many of the entries may need to be moved to the -lang_alii.yaml "obsolete" section; TODO.
+# This list is based on the Vim syntax highlighting list, a list of ~600 syntax rulesets
+# (basically regexes), with some dating back many years - the oldest could be monk.vim:
+# Last Change: April 30, 1998, so, many of the entries may need to be moved to the
+# "obsolete" section near the top; TODO.
 #
-# Mappings from syntax_uid to an editor's syntax language name, where the syntax_uid key exists
-# for your editor/application, but is for a different language syntax, MUST have an entry
-# included in the app_maps/my_editor.yaml file.  E.g. Vim does not have a syntax file for
-# "StringTemplate" templates for which the syntax_uid is "st" - in Vim, "st" refers to
-# Smalltalk.
-# This implies we need versioned syntax_uid releases if we wish to allow "fallback" to the
-# syntax_uid by default (if your editor does not have an app_maps/ entry for that syntax,
-# OR, mandate that every language an app supports MUST have an entry for each supported
-# syntax_uid - this might be safest.
+# Mappings from syntax_uid to an editor's syntax language name (or "file format" or etc), where
+# the syntax_uid key exists for your editor/application, but is for a different language syntax,
+# MUST have an entry included in the app_maps/my_editor.yaml file.  E.g. Vim does not have a
+# syntax file for "StringTemplate" templates for which the syntax_uid is "st" - in Vim, "st"
+# refers to Smalltalk.  UPDATE: The simplest and safest solution is, for your $EDITOR, provide a
+# mapping in app_maps/$EDITOR.yaml for EVERY supported syntax/filetype - those not present in
+# the $EDITOR map, are not supported by that $EDITOR; this simplifies one of the jobs of plugin
+# authors.
 #
-# We also need a mechanism/field for deprecation of a syntax_uid.
+# (OLD/OUTDATED: This implies we need versioned syntax_uid releases if we wish to allow
+# "fallback" to the syntax_uid by default, if your editor does not have an app_maps/ entry for
+# that syntax, OR, mandate that every language an app supports MUST have an entry for each
+# supported syntax_uid - this might be safest, YES, this is the rule.)
+#
+# We also _may_ need a mechanism/field for deprecation of a syntax_uid.
 #
 # This is not the place for "alternatives" syntax highlighting profiles for the same syntax;
 # for such, some other mechanism must be provided; see e.g. Vim's "printcap.vim" and "ptcap.vim"
-# syntax files where each appear to support printcap syntax (though only the latter officially
+# syntax files where each appear to support printcap syntax (whilst  only the latter officially
 # supports termcap files).
 
 # About bike shedding: There are many ways to create such uids, e.g.:
@@ -66,15 +71,14 @@
 #
 #   - adding extras to disambiguate
 #
-#   - ultimately, this list is about a UID for computer syntaxes, in order to uniquely ID each
-#     syntax of interest to programs/ conventions, in the first instance Editorconfig, which
-#     must deal with many syntaxii, and the list can contain any number of such syntax UIDs,
-#     which is sufficient for the purpose at hand
-#
 #   - language ontology buffs with a librarian bent, may well wish to climb Mount Everest and
 #     create an encyclopaedic declarative database, and such would indeed be nice to have; that
 #     will take time and planning, though if/when such a beast arrives, it will almost certainly
 #     provide a more ordered and "professional" set of UIDs
+#
+# Ultimately, this list is about a UID for computer syntaxes, in order to uniquely ID each
+# syntax of interest, in the first instance for EditorConfig which must handle many syntaxii,
+# and the list can contain any number of such UIDs, sufficient for the purposes at hand.
 #
 # For inspiration on the need for hierarchies and organisation, see:
 #   - https://en.wikipedia.org/wiki/List_of_Lisp-family_programming_languages
@@ -93,14 +97,9 @@ released: 20191003
 uids:
 
 # alii                  ________________________________________________________________________
-   # Each syntax_uid key below, identifies one of the following:
-   #   - a primary and vetted alias of a lang_uid
-   #   - an obsolete computer language/ syntax
-   #   - an unknown computer language/ syntax (info rot/ bit-rot)
-   #
-   # This is not a list of "many and various, for end user convenience, aliases", only an austere
-   # set of "standards based or otherwise well known" alii;
-   # and, those languages for which references are "unknown" - info-rot
+   # Each syntax_uid key below, identifies a deemed alias of a syntax_uid.
+   # This is not a list of "many and various, for end user convenience, aliases", only an
+   # austere set of "standards based or otherwise well known" alii.
 
    asm_gnu:             {alias_of: asm}
    euphoria_4:          {alias_of: euphoria}
@@ -118,7 +117,8 @@ uids:
 
 
 # unknown/ info rot     ________________________________________________________________________
-   # Each syntax_uid key below identifies an unknown/info-rot computer language syntax:
+   # Each syntax_uid key below identifies an unknown/info-rot computer language syntax, which is
+   # present due to a $syntax.vim syntax file being provided in the Vim 8.1 distribution.
 
    unk_denyhosts:       {unknown: true}
    unk_art_star_enterp: {unknown: true}
