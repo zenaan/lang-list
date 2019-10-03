@@ -1,0 +1,701 @@
+# This software is copyrighted, see the file "LICENSE" for copyright, use and distribution terms.
+
+# "Missing" from syntax_uid i.e. classified as "unk_" or unknown:
+#  - art: ART-IM or Art*Enterprise - cannot find them on the web (from 2011) so they don't exist :)
+#  - blank (with a version 1.4.1 - can't find any URL)
+#  - cmu_src
+#
+# Issues:
+#  - euphoria3 - should we have numbered euphoria3, euphoria4, or have Editorconfig have both
+#                "syntax" and "syntax_variant" fields, with variants "3" and "4"?
+#
+#  - at first I thought Vim "denyhosts" lang was "hostsaccess", then I found hostsaccess;
+#    dunno what denyhosts is for, so needs to be added to syntax_uid list...
+#
+#  - there is a tex.vim syntax file, presumably for TeX, and there is an initex.vim described as
+#    "TeX (core definition)", which, until further notice, I shall assume is only a base Vim
+#    syntax file for other TeX related syntax files to rely upon (ie., and not a separate lang).
+#
+#  - purifylog: Unsure or otherwise guessed: Vim's "purifylog.vim" does not (at least obviously)
+#    identify which "purify" syntax it is for, and neither of the two currently in syntax_uids
+#    might be correct; when someone figures it out, please add the correct mapping below and of
+#    course if needed, an additional entry to syntax_uids.
+#
+# Missing from Vim's syntax rules: Also, you must handle `syntax_uid`s that exist in
+# `syntax_uids.yaml`, and for which Vim has no syntax file - an appropriate error message should
+# be emitted (of course); examples: jam_stapl, eiffel_pyxis, oval, protobuf_idl.
+#
+# Some older languages have been mapped to the Vim syntax for a newer superset or "modern
+# dialect", where available, for example:
+#   - ml -> sml
+#   - algol -> simula
+#
+# Obsolete syntaxii identification: There are all but certainly additional obsolete languages
+# which ought move to the obsolete group at the top.
+#
+# Duplicates: Duplicate syntaxes are not (not intended to be at least) in the syntax_uids list,
+# so .editorconfig may need to provide for "alternatives", e.g. for Vim: pcap.vim, ptcap.vim,
+# although only the latter provides termcap (I'm no Vim expert, take all this with a grain of
+# salt).
+
+
+protocol: 0
+version: 0
+released: 20191003
+syntax_uid_to:
+
+# obsolete              ________________________________________________________
+   obs_ac_openroad:     {map: openroad}
+   obs_basic_ibasic:    {map: ibasic}
+   obs_eiffel_lace:     {map: lace}
+   obs_intel_plm:       {map: plm}
+   obs_latte_blatte:    {map: latte}
+   obs_magic_point:     {map: mgp}
+   obs_modsim_iii:      {map: modsim3}
+   obs_phtml:           {map: php}
+   obs_smith_calc:      {map: smith}
+   obs_teal_tealinfo:   {map: tli}
+   obs_vrml:            {map: vrml}
+
+# unknown / info rot    ________________________________________________________
+   unk_art_star_enterp: {map: art}
+   unk_blank:           {map: blank}
+   unk_cmu_src:         {map: cmusrc}
+   unk_denyhosts:       {map: denyhosts}
+   unk_sometask_data:   {map: taskdata}
+   unk_sometask_edit:   {map: taskedit}
+   unk_tilde_software:  {map: tilde}
+   unk_trustees:        {map: trustees}
+
+
+# syntax_uid            ________________________________________________________
+
+   3d_obj:              {map: obj}
+   4dos_batch:          {map: btm}
+
+   a2ps_conf:           {map: a2ps}
+   aap_recipe:          {map: aap}
+   abaqus_fea:          {map: abaqus}
+   abel:                {map: abel}
+   acedb_model:         {map: acedb}
+   actvstt_perlscript:  {map: aspperl}
+   ada:                 {map: ada}
+   apache_conf:         {map: apachestyle}
+   apached_conf:        {map: apache}
+   algol:               {map: simula}
+   alsa_conf:           {map: alsaconf}
+   amiga_autodoc:       {map: autodoc}
+   amiga_dos:           {map: amiga}
+   ant:                 {map: ant}
+   antlr:               {map: antlr}
+   aoi_ampl:            {map: ampl}
+   apache_velocity:     {map: webmacro}
+   applix_elf:          {map: elf}
+   apt_conf:            {map: aptconf}
+   arc_ml:              {map: aml}
+   arcgis_avenue:       {map: ave}
+   arduino:             {map: arduino}
+   asciidoc:            {map: asciidoc}
+   asm:                 {map: asm}
+   asm_6502:            {map: a65}
+   asm_68k:             {map: asm68k}
+   asm_avra:            {map: avra}
+   asm_flat:            {map: fasm}
+   asm_h8300:           {map: asmh8300}
+   asm_ia64:            {map: ia64}
+   asm_masm:            {map: masm}
+   asm_mix:             {map: mix}
+   asm_mmix:            {map: mmix}
+   asm_nasm:            {map: nasm}
+   asm_pic16f84:        {map: pic}
+   asm_tasm:            {map: tasm}
+   asm_vax:             {map: vmasm}
+   asm_wasm:            {map: wast}
+   asm_z80:             {map: asm_z80}
+   asn_1:               {map: asn}
+   asp_vbs:             {map: aspvbs}
+   asterisk:            {map: asterisk}
+   asterisk_vm:         {map: asteriskvm}
+   at_cupl:             {map: cupl}
+   at_cupl_sim:         {map: cuplsim}
+   atlas_test:          {map: atlas}
+   autohotkey:          {map: autohotkey}
+   automake:            {map: automake}
+   awk:                 {map: awk}
+   ayacc:               {map: ayacc}
+
+   b:                   {map: b}
+   bash:
+      map: sh
+      run: ["let b:is_bash=1", "set filetype=sh"]
+   basic:               {map: basic}  # Is this correct?
+   basic_autoit:        {map: autoit}
+   basic_baan:          {map: baan}
+   basic_fb:            {map: freebasic}
+   basic_vb:            {map: vb}
+   bazel:               {map: bzl}
+   bc:                  {map: bc}
+   bdf:                 {map: bdf}
+   bibtex:              {map: bib}
+   bibtex_style:        {map: bst}
+   bind_conf:           {map: named}
+   bind_zone:           {map: bindzone}
+   bsh:
+      map: sh
+      run: ["let b:is_bsh=1", "set filetype=sh"]
+   bzr:                 {map: bzr}
+
+   c:                   {map: c}
+   c_splint:            {map: splint}
+   cabal:               {map: cabal}
+   calendar:            {map: calendar}
+   cdrdao_conf:         {map: cdrdaoconf}
+   cdrdao_toc:          {map: cdrtoc}
+   cfg:                 {map: cfg}
+   cfml:                {map: cf}
+   ch:                  {map: ch}
+   chaiscript:          {map: chaiscript}
+   changelog:           {map: changelog}
+   changelog_deb:       {map: debchangelog}
+   cheetah:             {map: cheetah}
+   chem_speedup:        {map: spup}
+   chill:               {map: chill}
+   chordpro:            {map: chordpro}
+   clean:               {map: clean}
+   clipper:             {map: clipper}
+   clojure:             {map: clojure}
+   cmake:               {map: cmake}
+   cobol:               {map: cobol}
+   cocor:               {map: coco}
+   comm_telix_salt:     {map: comm_telix_salt}
+   comshare_dimension:  {map: cdl}
+   conary_recipe:       {map: conaryrecipe}
+   conf:                {map: conf}
+   configure_in:        {map: config}
+   context:             {map: context}
+   cpp:                 {map: cpp}
+   crm_114:             {map: crm}
+   crontab:             {map: crontab}
+   cs:                  {map: cs}
+   csh:                 {map: csh}
+   csp:                 {map: csp}
+   css:                 {map: css}
+   css_less:            {map: less}
+   css_sass:            {map: sass}
+   css_scss:            {map: scss}
+   ctrlh:               {map: ctrlh}
+   cucumber:            {map: cucumber}
+   cuda:                {map: cuda}
+   cvs:                 {map: cvs}
+   cvs_rc:              {map: cvsrc}
+   cweb:                {map: cweb}
+   cynlib:              {map: cynlib}
+   cynpp:               {map: cynpp}
+
+   d:                   {map: d}
+   dm_abc:              {map: abc}
+   datascript:          {map: datascript}
+   dcl:                 {map: dcl}
+   deb_control:         {map: debcontrol}
+   deb_copyright:       {map: debcopyright}
+   deb_sources:         {map: debsources}
+   decnet_cterm:        {map: cterm}
+   def:                 {map: def}
+   desktop:             {map: desktop}
+   devtree:             {map: dts}
+   dict:                {map: dict}
+   dictd:               {map: dictd}
+   diff:                {map: diff}
+   dircolors:           {map: dircolors}
+   django:              {map: django}
+   dnsmasq:             {map: dnsmasq}
+   docbook_sgml:
+      map: docbk
+      run: ["let b:docbk_type=sgml", "set filetype=docbk"]
+   docbook_xml:
+      map: docbk
+      run: ["let b:docbk_type=xml", "set filetype=docbk"]
+   dockerfile:          {map: dockerfile}
+   dos_batch:           {map: dosbatch}
+   doxygen:             {map: doxygen}
+   dsssl:               {map: dsl}
+   dtrace:              {map: dtrace}
+   dylan:               {map: dylan}
+   dylan_intr:          {map: dylanintr}
+   dylan_lid:           {map: dylanlid}
+
+   eda_altera:          {map: ahdl}
+   eda_diva:            {map: diva}
+   eda_dracula:         {map: dracula}
+   eda_haste:           {map: haste}
+   eda_haste_pre:       {map: hastepreproc}
+   eda_magma:           {map: icd_magma} # does not exist in Vim
+   eda_mentor:          {map: icd_mentor} # does not exist in Vim
+   eda_sdc:             {map: sdc}
+   eda_skill:           {map: skill}
+   eda_specman:         {map: specman}
+   eda_spice:           {map: spice}
+   eda_vams:            {map: verilogams}
+   eda_vera:            {map: vera}
+   eda_verilog:         {map: verilog}
+   eda_vhdl:            {map: vhdl}
+   eda_vsy:             {map: systemverilog}
+   edif:                {map: edif}
+   eiffel:              {map: eiffel}
+   #eiffel_pyxis:        {map: eiffel_pyxis}
+   elinks_conf:         {map: elinks}
+   elm_filter:          {map: elmfilt}
+   embedix_ecd:         {map: ecd}
+   email:               {map: mail}
+   erlang:              {map: erlang}
+   eruby_tpl:           {map: eruby}
+   esmtp_conf:          {map: esmtprc}
+   esql_c:              {map: esqlc}
+   essbase_script:      {map: csc}
+   esterel:             {map: esterel}
+   eterm_conf:          {map: eterm}
+   euphoria:            {map: euphoria4}
+   euphoria_3:          {map: euphoria3}
+   exim_conf:           {map: exim}
+   expect:              {map: expect}
+
+   falcon_conf:         {map: falcon}
+   fantom:              {map: fan}
+   fetchmail_conf:      {map: fetchmail}
+   flex:                {map: aflex}
+   flexwiki:            {map: flexwiki}
+   form:                {map: form}
+   forth:               {map: forth}
+   fortran:             {map: fortran}
+   foxpro:              {map: foxpro}
+   framescript:         {map: framescript}
+   fstab:               {map: fstab}
+   fuge:                {map: tf}
+   fvwm_conf:           {map: fvwm}
+   fvwm2m4:             {map: fvwm2m4}
+
+   gdb:                 {map: gdb}
+   gdmo:                {map: gdmo}
+   gedcom:              {map: gedcom}
+   git:                 {map: git}
+   git_commit:          {map: gitcommit}
+   git_conf:            {map: gitconfig}
+   git_rebase:          {map: gitrebase}
+   git_send_email:      {map: gitsendemail}
+   gitolite:            {map: gitolite}
+   gkrellm_theme:       {map: gkrellmrc}
+   gnash:               {map: gnash}
+   gnats_sendpr_conf:   {map: sendpr}
+   gnu_arch:            {map: arch}
+   gnuplot:             {map: gnuplot}
+   go:                  {map: go}
+   godoc:               {map: godoc}
+   google_apps_script:  {map: }
+   gp:                  {map: gp}
+   gpg:                 {map: gpg}
+   gprof:               {map: gprof}
+   grads:               {map: grads}
+   gretl:               {map: gretl}
+   groff:               {map: groff}
+   groovy:              {map: groovy}
+   grub:                {map: grub}
+   gsp:                 {map: gsp}
+   gtk_theme:           {map: gtkrc}
+
+   haml:                {map: haml}
+   hamster:             {map: hamster}
+   hercules:            {map: hercules}
+   haskell:             {map: haskell}
+   haskell_c2hs:        {map: chaskell}
+   hex_intel:           {map: hex}
+   hg_commit:           {map: hgcommit}
+   hog:                 {map: hog}
+   html:                {map: html}
+   html_cheetah:        {map: htmlcheetah}
+   html_django:         {map: htmldjango}
+   html_m4:             {map: htmlm4}
+   html_os:             {map: htmlos}
+   html_tidy_conf:      {map: tidy}
+   hyper_builder:       {map: hb}
+
+   ibi_focus:           {map: focexec}
+   ibi_mfd:             {map: master}
+   ibm_purify_log:      {map: purifylog}
+   icewm_menu:          {map: icemenu}
+   ico:                 {map: icon}
+   idl:                 {map: idl}
+   idl_ms:              {map: msidl}
+   idlang:              {map: idlang}
+   ihs_eviews:          {map: eviews}
+   ilc_winbatch:        {map: winbatch}
+   indent:              {map: indent}
+   inform:              {map: inform}
+   ini:                 {map: dosini}
+   initng:              {map: initng}
+   innovdp_upstr_dat:   {map: upstreamdat}
+   innovdp_upstr_inst:  {map: upstreaminstalllog}
+   innovdp_upstr_log:   {map: upstreamlog}
+   innovdp_upstr_rpt:   {map: upstreamrpt}
+   innovdp_usserver:    {map: usserverlog}
+   innovdp_usw2kagt:    {map: usw2kagtlog}
+   ipfilter_conf:       {map: ipfilter}
+   installshield:       {map: ishd}
+   inno_setup:          {map: iss}
+   ist:                 {map: ist}
+
+   j:                   {map: j}
+   jal:                 {map: jal}
+   jam:                 {map: jam}
+   #jam_stapl:           {map: }
+   jargon:              {map: jargon}
+   java:                {map: java}
+   java_webmacro:       {map: webmacro}
+   javacc:              {map: javacc}
+   jcl_vse:             {map: vsejcl}
+   jcl_zos:             {map: jcl_zos} # not in Vim
+   jess:                {map: jess}
+   jgraph:              {map: jgraph}
+   jovial:              {map: jovial}
+   js:                  {map: javascript}
+   json:                {map: json}
+   jsp:                 {map: jsp}
+
+   kivy:                {map: kivy}
+   kix:                 {map: kix}
+   kimwitu:             {map: kwt}
+   kscript:             {map: kscript}
+   ksh:
+      map: sh
+      run: ["let b:is_kornshell=1", "set filetype=sh"]
+
+   lamda_prolog:        {map: lprolog}
+   ld:                  {map: ld}
+   ldap_conf:           {map: ldapconf}
+   ldap_ldif:           {map: ldif}
+   lex:                 {map: lex}
+   lftp_conf:           {map: lftp}
+   lhaskell:            {map: lhaskell}
+   libao_conf:          {map: libao}
+   lifelines:           {map: lifelines}
+   lilo_conf:           {map: lilo}
+   linux_kconfig:       {map: kconfig}
+   lisp:                {map: lisp}
+   lite_sql:            {map: lite}
+   litestep_conf:       {map: litestep}
+   locale:              {map: fdcc}
+   logtalk:             {map: logtalk}
+   lotos:               {map: lotos}
+   lotusscript:         {map: lscript}
+   lout:                {map: lout}
+   lpc:                 {map: lpc}
+   lsl:                 {map: lsl}
+   lua:                 {map: lua}
+   lynx_conf:           {map: lynx}
+   lynx_style:          {map: lss}
+
+   magicl:              {map: mgl}
+   mailcap:             {map: mailcap}
+   make:                {map: make}
+   mallard:             {map: mallard}
+   man:                 {map: man}
+   man_conf:            {map: manconf}
+   maple:               {map: maple}
+   mason:               {map: mason}
+   mathematica:         {map: mma}
+   matlab:              {map: matlab}
+   matlab_mupad:        {map: mupad}
+   maxima:              {map: maxima}
+   maya_mel:            {map: mel}
+   metapost:            {map: mp}
+   md:                  {map: markdown}
+   media_nsc:           {map: media_nsc}
+   media_sap:           {map: media_sap}
+   media_sdp:           {map: sd}
+   meltwater_datasift:  {map: csdl}
+   metafont:            {map: mf}
+   ml:                  {map: sml}
+   modula_2:            {map: modula2}
+   modula_3:            {map: modula3}
+   moo:                 {map: moo}
+   motif_uil:           {map: uil}
+   mplayer_conf:        {map: mplayerconf}
+   ms_doc:              {map: ms_doc}  # does not exist in Vim
+   ms_dot:              {map: dot}
+   ms_messages:         {map: msmessages}
+   ms_wsh:              {map: wsh}
+   multibase_cl:        {map: cl}
+   murphi:              {map: murphi}
+   mush:                {map: mush}
+   mutt_conf:           {map: muttrc}
+
+   n1ql:                {map: n1ql}
+   nano_conf:           {map: nanorc}
+   nastran:             {map: nastran}
+   neomutt_conf:        {map: neomuttrc}
+   netrc:               {map: netrc}
+   nfs_exports:         {map: exports}
+   ni_xmath:            {map: xmath}
+   ninja_build:         {map: ninja}
+   novell_ncf:          {map: ncf}
+   nqc:                 {map: nqc}
+   nroff:               {map: nroff}
+   nsis:                {map: nsis}
+
+   objc:                {map: objc}
+   objcpp:              {map: objcpp}
+   ocaml:               {map: ocaml}
+   occam:               {map: occam}
+   omnimark:            {map: omnimark}
+   omnipeek:            {map: dcd}
+   openssh_conf:        {map: sshconfig}
+   opensshd_conf:       {map: sshdconfig}
+   opl:                 {map: opl}
+   oracle_conf:         {map: ora}
+   ovms_pli:            {map: pli}
+
+   pam_conf:            {map: pamconf}
+   pam_limits_conf:     {map: limits}
+   papp:                {map: papp}
+   pascal:              {map: pascal}
+   pccts:               {map: pccts}
+   pdf:                 {map: pdf}
+   perl:                {map: perl}
+   perl_tt:             {map: tt2}
+   perl_tthtm:          {map: tt2html}
+   perl_ttjs:           {map: tt2js}
+   perl_xs:             {map: xs}
+   pf:                  {map: pf}
+   php:                 {map: php}
+   pike:                {map: pike}
+   pike_cmod:           {map: cmod}
+   pilrc:               {map: pilrc}
+   pine_conf:           {map: pine}
+   pinfo_conf:          {map: pinfo}
+   plp:                 {map: plp}
+   po:                  {map: po}
+   pod:                 {map: pod}
+   postfix_aliases:     {map: mailaliases}
+   postfix_conf:        {map: pfmain}
+   pov:                 {map: pov}
+   pov_conf:            {map: povini}
+   ppd:                 {map: ppd}
+   ppwiz:               {map: ppwiz}
+   prescribe2e:         {map: prescribe2e}
+   printcap:            {map: pcap}
+   privoxy:             {map: privoxy}
+   procmail:            {map: procmail}
+   progress_4gl:        {map: progress}
+   prolog:              {map: prolog}
+   promela:             {map: promela}
+   properties:          {map: jproperties}
+   protobuf:            {map: proto}
+   protocols:           {map: protocols}
+   ps:                  {map: postscr}
+   psf:                 {map: psf}
+   psi_purify_log:      {map: purifylog}
+   py_spyce:            {map: spyce}
+   pyrex:               {map: pyrex}
+   python:              {map: python}
+
+   quakec:              {map: quake}
+
+   r:                   {map: r}
+   r_help:              {map: rhelp}
+   r_md:                {map: rmd}
+   r_noweb:             {map: rnoweb}
+   racc:                {map: racc}
+   radiance:            {map: radiance}
+   raku:                {map: perl6}
+   raml:                {map: raml}
+   ratpoison:           {map: ratpoison}
+   rcs:                 {map: rcs}
+   rcs_log:             {map: rcslog}
+   readline_conf:       {map: readline}
+   rebol:               {map: rebol}
+   redif:               {map: redif}
+   registry:            {map: registry}
+   relax_ng:            {map: rng}
+   relax_ngc:           {map: rnc}
+   remind:              {map: remind}
+   resolv_conf:         {map: resolv}
+   resource:            {map: rc}
+   reva:                {map: reva}
+   rexx:                {map: rexx}
+   rib:                 {map: rib}
+   rock_desc:           {map: desc}
+   robots_txt:          {map: robots}
+   rpcgen:              {map: rpcgen}
+   rpl:                 {map: rpl}
+   rpm_spec:            {map: spec}
+   rrst:                {map: rrst}
+   rst:                 {map: rst}
+   rtf:                 {map: rtf}
+   ruby:                {map: ruby}
+   ruby_treetop:        {map: treetop}
+   rust:                {map: rust}
+   rxvt_conf:           {map: mrxvtrc}
+
+   s_lang:              {map: slang}
+   samba_conf:          {map: samba}
+   sap_abap:            {map: abap}
+   sas_sasi:            {map: sas}
+   sather:              {map: sather}
+   sbt:                 {map: sbt}
+   scala:               {map: scala}
+   scheme:              {map: scheme}
+   scheme_chicken:      {map: chicken}
+   scilab:              {map: scilab}
+   screen_conf:         {map: screen}
+   sdl_3dmlw:           {map: sdl_3dmlw}
+   sdl_itut:            {map: sdl}
+   sdl_povray:          {map: sdl_povray}
+   sdl_tao:             {map: sdl_tao}
+   sdl_x3d:             {map: sdl_x3d}
+   sdml:                {map: sdml}
+   sed:                 {map: sed}
+   seebeyond_monk:      {map: monk}
+   sendmail_conf:       {map: sm}
+   sensors_conf:        {map: sensors}
+   services:            {map: services}
+   setserial:           {map: setserial}
+   sgml:                {map: sgml}
+   sgml_catalog:        {map: catalog}
+   sgml_decl:           {map: sgmldecl}
+   sgml_linuxdoc:       {map: sgmllnx}
+   sh:                  {map: sh}
+   shopify_liquid:      {map: liquid}
+   sicad:               {map: sicad}
+   sieve_filter:        {map: sieve}
+   simula:              {map: simula}
+   sinda_fluint:        {map: sinda}
+   sinda_cmp:           {map: sindacmp}
+   sinda_out:           {map: sindaout}
+   sisu:                {map: sisu}
+   sl:                  {map: sl}
+   slp_conf:            {map: slpconf}
+   slp_reg:             {map: slpreg}
+   slp_spi:             {map: slpspi}
+   slrn_conf:           {map: slrnrc}
+   slrn_score:          {map: slrnsc}
+   smalltalk:           {map: st}
+   smarty:              {map: smarty}
+   smil:                {map: smil}
+   sml:                 {map: sml}
+   snmp_mib:            {map: mib}
+   snns_net:            {map: snnsnet}
+   snns_pat:            {map: snnspat}
+   snns_res:            {map: snnsres}
+   snobol4:             {map: snobol4}
+   spacedesign_tss:     {map: tsscl}
+   spacedesign_tss_geo: {map: tssgm}
+   spacedesign_tss_opt: {map: tssop}
+   sql:                 {map: sql}
+   sql_anywhere:        {map: sqlanywhere}
+   sql_hana:            {map: sqlhana}
+   sql_informix:        {map: sqlinformix}
+   sql_java:            {map: sqlj}
+   sql_ms_stp:          {map: stp}
+   sql_msql:            {map: msql}
+   sql_mysql:           {map: mysql}
+   sql_oforms:          {map: sqlforms}
+   sql_oracle:          {map: sqloracle}
+   sql_plsql:           {map: plsql}
+   sql_sqr:             {map: sqr}
+   squid_conf:          {map: squid}
+   srec:                {map: srec}
+   #st:                  {map: stringtemplate} # this does not exist for Vim
+   stata_mata:          {map: stata}
+   stata_smcl:          {map: smcl}
+   strace:              {map: strace}
+   stratus_vos_cm:      {map: voscm}
+   sudoers:             {map: sudoers}
+   svg:                 {map: svg}
+   svn:                 {map: svn}
+   symbian_mmp:         {map: mmp}
+   systemd_unit:        {map: systemd}
+   sysv_inittab:        {map: inittab}
+
+   tads:                {map: tads}
+   tak2000_in:          {map: tak}
+   tak2000_cmp:         {map: takcmp}
+   tak2000_out:         {map: takout}
+   tap:                 {map: tap}
+   tar_list:            {map: tar}
+   tcl:                 {map: tcl}
+   tcsh:                {map: tcsh}
+   tera_term:           {map: teraterm}
+   termcap:             {map: ptcap}
+   terminfo:            {map: terminfo}
+   tex:                 {map: tex}
+   tex_plain:           {map: plaintex}
+   tex_web:             {map: web}
+   texinfo:             {map: texinfo}
+   texmf:               {map: texmf}
+   tmux:                {map: tmux}
+   trasis:              {map: trasis}
+   txt_tpp:             {map: tpp}
+
+   udev_conf:           {map: udevconf}
+   udev_perm:           {map: udev_perm}
+   udev_rules:          {map: udev_rules}
+   unix_group:          {map: group}
+   unix_host_conf:      {map: hostconf}
+   unix_hosts_access:   {map: hostsaccess}
+   unix_log:            {map: messages}
+   unix_login_access:   {map: loginaccess}
+   unix_login_defs:     {map: logindefs}
+   unix_modules_conf:   {map: modconf}
+   unix_passwd:         {map: passwd}
+   unix_sysctl:         {map: sysctl}
+   unrealscript:        {map: uc}
+   updatedb_conf:       {map: updatedb}
+   upstart_job:         {map: upstart}
+
+   valgrind_defs:       {map: vgrindefs}
+   valgrind_model:      {map: model}
+   valgrind_out:        {map: valgrind}
+   verilog:             {map: verilog}
+   verilog_ams:         {map: verilogams}
+   verilog_sv:          {map: systemverilog}
+   vim_dir:             {map: dirpager}
+   vim_help:            {map: help}
+   vim_info:            {map: viminfo}
+   vim_netrw:           {map: netrw}
+   vim_script:          {map: vim}
+   vim_tags:            {map: tags}
+   vim_vroom:           {map: vroom}
+   virata_aconfig:      {map: virata}
+   von_oppen_natural:   {map: natural}
+
+   wdiff:               {map: wdiff}
+   web_change:          {map: change}
+   wget_conf:           {map: wget}
+   wml:                 {map: wml}
+   wsdl:                {map: wsdl}
+   wsml:                {map: wsml}
+   wvdial_conf:         {map: wvdial_conf}
+
+   x_conf:              {map: xf86conf}
+   x_resources:         {map: xdefaults}
+   x_xkb:               {map: xkb}
+   xhtml:               {map: xhtml}
+   xinetd_conf:         {map: xinetd}
+   xml:                 {map: xml}
+   xml_dtd:             {map: dtd}
+   xml_xbl:             {map: xbl}
+   xml_xquery:          {map: xquery}
+   xml_xsd:             {map: xsd}
+   xml_xslt:            {map: xslt}
+   xmodmap_conf:        {map: xmodmap}
+   xpm:                 {map: xpm}
+   xpm2:                {map: xpm2}
+   xxd:                 {map: xxd}
+
+   yacc:                {map: yacc}
+   yaml:                {map: yaml}
+
+   zeroc_slice:         {map: zeroc_slice}
+   zimbu:               {map: zimbu}
+   zope_dtml:           {map: dtml}
+   zsh:                 {map: zsh}
+

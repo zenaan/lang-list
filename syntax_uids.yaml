@@ -1,0 +1,883 @@
+# This software is copyrighted, see the file "LICENSE" for copyright, use and distribution terms.
+
+# To have a new syntax_uid added to the list, send (preferably) a GitHub pull request, or send
+# an email to github-pull-requests(AT)freedbms.net
+#
+# BUT - do check groups of related languages, e.g.
+# https://en.wikipedia.org/wiki/List_of_markup_languages
+# and think about adding a group of languages, with a common prefix, rather than just one.
+
+# Namespace: There is some minimal initial namespaceing (besides the "obs_"/obsolete and
+# "unk"/unknown defaults) namely the following prefixes:
+#   - asm_ for all ASM syntaxes
+#   - basic_ for all BASIC languages
+#   - eda_ for all Electronic Design Automation and Hardware Description Language syntaxes
+#   - git_ and various other ${APPLICATION}_ prefixes
+#   - html_ and various other ${MARKUP_LANG}_ prefixes
+#   - perl_ and various other ${LANGUAGE}_ prefixes
+#   - sql_ for all SQL dialects
+#   - unix_, collecting a number of (but not all) unix config files
+#
+# The open question is, should literally EVERYTHING be namespaced in this way, due to the fact
+# that there are literally 1000s of languages, syntaxes and file formats?
+#
+# And consequently, keep the existing list as mostly or entirely aliases?
+#
+# Or implement some other scoping/namespacing mechanism?
+#
+# Or just run with the below, and expand/deprecate as deemed necessary?
+
+# Each syntax_uid key (in the map named "uids") identifies a computer language for the purposes of
+# syntax highlighting.
+#
+# This list is based on the Vim syntax highlighting list, a list of ~600 syntax rulesets, with
+# some dating back many years - the oldest appears to be monk.vim: Last Change: April 30, 1998,
+# so, many of the entries may need to be moved to the -lang_alii.yaml "obsolete" section; TODO.
+#
+# Mappings from syntax_uid to an editor's syntax language name, where the syntax_uid key exists
+# for your editor/application, but is for a different language syntax, MUST have an entry
+# included in the app_maps/my_editor.yaml file.  E.g. Vim does not have a syntax file for
+# "StringTemplate" templates for which the syntax_uid is "st" - in Vim, "st" refers to
+# Smalltalk.
+# This implies we need versioned syntax_uid releases if we wish to allow "fallback" to the
+# syntax_uid by default (if your editor does not have an app_maps/ entry for that syntax,
+# OR, mandate that every language an app supports MUST have an entry for each supported
+# syntax_uid - this might be safest.
+#
+# We also need a mechanism/field for deprecation of a syntax_uid.
+#
+# This is not the place for "alternatives" syntax highlighting profiles for the same syntax;
+# for such, some other mechanism must be provided; see e.g. Vim's "printcap.vim" and "ptcap.vim"
+# syntax files where each appear to support printcap syntax (though only the latter officially
+# supports termcap files).
+
+# About bike shedding: There are many ways to create such uids, e.g.:
+#   - defacto_filename_extension (mostly 3 letters, MUCH overlap)
+#
+#   - category_extension (still some overlap)
+#
+#   - giving first/pride of place to LIBRE/FLOSS software, prepending or appending company name
+#     to proprietary formats (but bear in mind some proprietary formats have had FLOSS
+#     implementations after many years, and/or have become FLOSSed, e.g. Blender)
+#
+#   - giving program name pride of place, append _conf, _desc, _etc.
+#
+#   - using the format name (inserting underscores for spaces etc) as primary
+#
+#   - adding extras to disambiguate
+#
+#   - ultimately, this list is about a UID for computer syntaxes, in order to uniquely ID each
+#     syntax of interest to programs/ conventions, in the first instance Editorconfig, which
+#     must deal with many syntaxii, and the list can contain any number of such syntax UIDs,
+#     which is sufficient for the purpose at hand
+#
+#   - language ontology buffs with a librarian bent, may well wish to climb Mount Everest and
+#     create an encyclopaedic declarative database, and such would indeed be nice to have; that
+#     will take time and planning, though if/when such a beast arrives, it will almost certainly
+#     provide a more ordered and "professional" set of UIDs
+#
+# For inspiration on the need for hierarchies and organisation, see:
+#   - https://en.wikipedia.org/wiki/List_of_Lisp-family_programming_languages
+#   - https://en.wikipedia.org/wiki/List_of_programming_languages
+#   - https://en.wikipedia.org/wiki/Lists_of_programming_languages
+#   - https://en.wikipedia.org/wiki/Category:Lists_of_computer_languages
+#   - https://en.wikipedia.org/wiki/List_of_BASIC_dialects
+#   - https://en.wikipedia.org/wiki/List_of_file_formats#3D_graphics
+#   - https://en.wikipedia.org/wiki/Comparison_of_regular_expression_engines
+#     https://www.regular-expressions.info/refflavors.html
+
+name: {en: "computer language syntax UID"}
+protocol: 0
+version: 0
+released: 20191003
+uids:
+
+# alii                  ________________________________________________________________________
+   # Each syntax_uid key below, identifies one of the following:
+   #   - a primary and vetted alias of a lang_uid
+   #   - an obsolete computer language/ syntax
+   #   - an unknown computer language/ syntax (info rot/ bit-rot)
+   #
+   # This is not a list of "many and various, for end user convenience, aliases", only an austere
+   # set of "standards based or otherwise well known" alii;
+   # and, those languages for which references are "unknown" - info-rot
+
+   asm_gnu:             {alias_of: asm}
+   euphoria_4:          {alias_of: euphoria}
+   fdcc:                {alias_of: locale}
+   freebasic:           {alias_of: basic_fb}
+   golang:              {alias_of: go}
+   javascript:          {alias_of: js}
+   perl6:               {alias_of: raku}
+   phtml:               {alias_of: php, obsolete: true}
+   plsql:               {alias_of: sql_plsql}
+   readline:            {alias_of: readline_conf}
+   verilog:             {alias_of: eda_verilog}
+   webmacro:            {alias_of: java_webmacro}
+
+
+# unknown/ info rot     ________________________________________________________________________
+   # Each syntax_uid key below identifies an unknown/info-rot computer language syntax:
+
+   unk_denyhosts:       {unknown: true}
+   unk_art_star_enterp: {unknown: true}
+   unk_blank:           {unknown: true}
+   unk_cmu_src:         {unknown: true}
+   unk_sometask_data:   {unknown: true}
+   unk_sometask_edit:   {unknown: true}
+   unk_tilde_software:  {unknown: true} # www.tildesoftware.net
+   unk_trustees:        {unknown: true} # ???
+
+
+
+# obsolete              ________________________________________________________________________
+   # Each syntax_uid key in this section identifies an obsolete language syntax,
+   # use another where possible.
+
+   obs_ac_openroad:     {obsolete: true, name: {en: "Actian Corporation OpenROAD"}}
+   obs_basic_ibasic:    {obsolete: true, name: {en: "IBASIC"}, family: basic}
+   obs_eiffel_lace:     {obsolete: true, name: {en: "Interactive Software Engineering EiffelStudio 5.6 Lace"}}
+   obs_intel_plm:       {obsolete: true, name: {en: "Intel PL/M"}}
+   obs_latte_blatte:    {obsolete: true, name: {en: "Latte Blatte"}}
+   obs_magic_point:     {obsolete: true, name: {en: "MagicPoint"}}
+   obs_modsim_iii:      {obsolete: true, name: {en: "Compuware Modsim III discrete systems simulation"}}
+   obs_smith_calc:      {obsolete: true, name: {en: "SMITH (circa 2000 see vim../syntax/smith.vim"}}
+   obs_teal_tealinfo:   {obsolete: true, name: {en: "Teal info"}}
+   obs_vrml:            {obsolete: true, superceded_by: x3d, name: {en: "Virtual Reality Modeling Language"}}
+
+
+# Each syntax_uid key in the below sections identifies a UID for a computer language syntax.
+
+# 0-9                   ________________________________________________________________________
+   3d_obj:              {name: {en: "3D Wavefront obj"}}
+   4dos_batch:          {name: {en: "4Dos Batch"}, family: dos}
+
+# A                     ________________________________________________________________________
+   a_0:                 {name: {en: "A-0 System"}}
+   a_sharp:             {name: {en: "A# .NET"}}
+   a2ps_conf:           {name: {en: "a2ps conf"}}
+   aap_recipe:          {name: {en: "A-A-P/Aap recipe"}}
+   abaqus_fea:          {name: {en: "Abaqus FEA input"}}
+   abcpl:               {name: {en: "ABC programming language"}}
+   abel:                {name: {en: "Advanced Boolean Expression Language"}}
+   acedb_model:         {name: {en: "a C. elegans biological database model"}}
+   actionscript:        {name: {en: "ActionScript"}}
+   actvstt_perlscript:  {name: {en: "ActiveState ActivePerl"}}
+   ada:                 {name: {en: "Ada"}}
+   apache_conf:         {name: {en: "Apache style conf"}}
+   apached_conf:        {name: {en: "Apache httpd conf"}}
+   algol:               {name: {en: "ALGOL 60"}}
+   alsa_conf:           {name: {en: "Advanced Linux Sound Architecture conf"}}
+   amiga_autodoc:       {name: {en: "Amiga Autodoc"}}
+   amiga_dos:           {name: {en: "AmigaDOS"}}
+   aml_aimms:           {name: {en: "algebraic modeling lang - AIMMS"}}
+   aml_ampl:            {name: {en: "algebraic modeling lang - AMPL"}}
+   aml_apm:             {name: {en: "algebraic modeling lang - APMonitor"}}
+   aml_ascend:          {name: {en: "algebraic modeling lang - ASCEND"}}
+   aml_gams:            {name: {en: "algebraic modeling lang - GAMS"}}
+   aml_jump:            {name: {en: "algebraic modeling lang - JuMP.jl"}}
+   aml_mathprog:        {name: {en: "algebraic modeling lang - MathProg"}}
+   aml_opl:             {name: {en: "algebraic modeling lang - OPL"}}
+   aml_optimj:          {name: {en: "algebraic modeling lang - OptimJ"}}
+   aml_optmodel:        {name: {en: "algebraic modeling lang - OPTMODEL"}}
+   aml_pyomo:           {name: {en: "algebraic modeling lang - Pyomo"}}
+   aml_sampl:           {name: {en: "algebraic modeling lang - SAMPL"}}
+   aml_xpress:          {name: {en: "algebraic modeling lang - Xpress-Mosel"}}
+   ant:                 {name: {en: "Apache Ant build"}}
+   antlr:               {name: {en: "ANTLR, Another Tool For Language Recognition"}}
+   aoi_ampl:            {name: {en: "AMPL Optimization, Inc. AMPL"}}
+   ap:                  {name: {en: "A+"}}
+   apache_velocity:     {name: {en: "Apache Velocity"}, family: java_webmacro}
+   app:                 {name: {en: "A++"}}
+   applix_elf:          {name: {en: "Applix Extension Language Facility"}}
+   apt_conf:            {name: {en: "APT conf"}}
+   arc_ml:              {name: {en: "ARC Macro Language"}}
+   arduino:             {name: {en: "Arduino"}}
+   asciidoc:            {name: {en: "AsciiDoc"}}
+   asm:                 {name: {en: "GNU Assembler"}}
+   asm_6502:            {name: {en: "6502 assembler"}}
+   asm_68k:             {name: {en: "Motorola 68000 assembler"}}
+   asm_avra:            {name: {en: "Atmel AVR Assember"}}
+   asm_flat:            {name: {en: "FASM flat assembler"}}
+   asm_h8300:           {name: {en: "Hitachi H-8300h specific syntax for GNU Assembler"}}
+   asm_ia64:            {name: {en: "IA-64 (Itanium) assembler"}}
+   asm_masm:            {name: {en: "Microsoft Macro Assembler x86 assembler"}}
+   asm_mix:             {name: {en: "Donald Knuth's MIX"}}
+   asm_mmix:            {name: {en: "Donald Knuth's MMIX"}}
+   asm_nasm:            {name: {en: "NASM - The Netwide Assembler"}}
+   asm_pic16f84:        {name: {en: "PIC16F84 assembler"}}
+   asm_tasm:            {name: {en: "TASM - Borland Turbo Assembler"}}
+   asm_vax:             {name: {en: "VAX Macro assembly"}}
+   asm_wasm:            {name: {en: "WebAssembly (Wasm) assembly"}}
+   asm_z80:             {name: {en: "Z80 assembler"}}
+   asn_1:               {name: {en: "ASN.1"}}
+   asp_vbs:             {name: {en: "Microsoft VBScript Web Content (ASP)"}}
+   asterisk:            {name: {en: "Asterisk conf"}}
+   asterisk_vm:         {name: {en: "Asterisk voicemail conf"}}
+   at_cupl:             {name: {en: "Assisted Technology Compiler for Universal Programmable Logic"}}
+   at_cupl_sim:         {name: {en: "CUPL simulation"}}
+   atlas_test:          {name: {en: "Abbreviated Test Language for All Systems"}}
+   autohotkey:          {name: {en: "AutoHotkey script"}}
+   automake:            {name: {en: "GNU Automake"}}
+   arcgis_avenue:       {name: {en: "ArcGIS ArcView Avenue"}}
+   awk:                 {name: {en: "GNU Awk"}}
+   ayacc:               {name: {en: "Ayacc, Ada yacc"}}
+
+# B                     ________________________________________________________________________
+   b:                   {name: {en: "B-Method"}}
+   bash:                {name: {en: "Bash Shell"}, family: sh}
+   basic:               {name: {en: "BASIC"}}
+   basic_autoit:        {name: {en: "AutoIt BASIC script"}, family: basic}
+   basic_baan:          {name: {en: "Baan BASIC"}, family: basic}
+   basic_fb:            {name: {en: "FreeBasic"}, family: basic}
+   basic_vb:            {name: {en: "Visual Basic"}, family: basic}
+   bazel:               {name: {en: "Bazel build test"}}
+   bc:                  {name: {en: "GNU bc(1) arbitrary precision calculator"}}
+   bdf:                 {name: {en: "BDF font definition"}}
+   bibtex:              {name: {en: "BibTeX, (La)TeX bibliographic database"}, family: tex}
+   bibtex_style:        {name: {en: "BibTeX Bibliography Style"}, family: tex}
+   bind_conf:           {name: {en: "Bind conf"}}
+   bind_zone:           {name: {en: "Bind zone conf"}}
+   bsh:                 {name: {en: "Bourne Shell"}, family: sh}
+   bzr:                 {name: {en: "Bazaar bzr commit"}}
+
+# C                     ________________________________________________________________________
+   c:                   {name: {en: "C"}}
+   c_splint:            {name: {en: "splint (C with lclint/splint Annotations)"}}
+   cabal:               {name: {en: "Haskell Cabal Build"}}
+   calendar:            {name: {en: "BSD calendar(1) input"}}
+   cdrdao_conf:         {name: {en: "cdrdao(1) conf"}}
+   cdrdao_toc:          {name: {en: "cdrdao(1) TOC"}}
+   cfml:                {name: {en: "ColdFusion Markup Language"}}
+   cfg:                 {name: {en: "cfg conf"}}
+   ch:                  {name: {en: "Ch C/C++ interpreter"}, family: c}
+   chaiscript:          {name: {en: "ChaiScript"}}
+   changelog:           {name: {en: "ChangeLog"}}
+   changelog_deb:       {name: {en: "Debian ChangeLog"}, family: changelog}
+   cheetah:             {name: {en: "Cheetah template"}}
+   chem_speedup:        {name: {en: "AspenTech SPEEDUP chemical simulator"}}
+   chill:               {name: {en: "CHILL CCITT High Level Language"}}
+   chordpro:            {name: {en: "ChordPro lyrics with chords"}}
+   clean:               {name: {en: "Clean/ Concurrent Clean"}}
+   clipper:             {name: {en: "Clipper & FlagShip"}}
+   clojure:             {name: {en: "Clojure"}}
+   cmake:               {name: {en: "cmake"}}
+   cobol:               {name: {en: "COBOL"}}
+   cocor:               {name: {en: "Coco/R"}}
+   comm_telix_salt:     {name: {en: "Telix (Modem Comm Program) SALT Script"}}
+   comshare_dimension:  {name: {en: "Comshare Dimension Definition"}}
+   conary_recipe:       {name: {en: "Conary Recipe"}}
+   conf:                {name: {en: "conf"}}
+   configure_in:        {name: {en: "configure.in - M4 + sh"}}
+   context:             {name: {en: "ConTeXt typesetting"}, family: tex}
+   cpp:                 {name: {en: "C++"}}
+   crm_114:             {name: {en: "CRM114 Discriminator"}}
+   crontab:             {name: {en: "crontab"}}
+   cs:                  {name: {en: "C# (C sharp)"}}
+   csh:                 {name: {en: "C Shell"}}
+   csp:                 {name: {en: "communicating sequential processes (CSP)"}}
+   css:                 {name: {en: "Cascading Style Sheets"}}
+   css_less:            {name: {en: "CSS less"}}
+   css_sass:            {name: {en: "Sass - syntactically awesome style sheets"}}
+   css_scss:            {name: {en: "SCSS - Sassy CSS"}}
+   ctrlh:               {name: {en: "CTRL-H, e.g., ASCII manpages"}}
+   cucumber:            {name: {en: "Cucumber Ruby Executable Specifications"}}
+   cuda:                {name: {en: "NVIDIA Compute Unified Device Architecture"}}
+   cvs:                 {name: {en: "CVS commit"}}
+   cvs_rc:              {name: {en: "CVS RC file"}}
+   cweb:                {name: {en: "CWEB"}}
+   cynlib:              {name: {en: "Cynlib (C++)"}}
+   cynpp:               {name: {en: "Cynpp or Cyn++, Cynlib macro language"}}
+
+# D                     ________________________________________________________________________
+   d:                   {name: {en: "D"}}
+   dm_abc:              {name: {en: "digital media - ABC music notation"}}
+   dm_chuck:            {name: {en: "digital media - ChucK"}}
+   dm_cmixrt:           {name: {en: "digital media - Real-time Cmix"}, family: dm_musicn}
+   dm_clm:              {name: {en: "digital media - Common Lisp Music"}}
+   dm_csound:           {name: {en: "digital media - Csound"}, family: dm_musicn}
+   dm_extempore:        {name: {en: "digital media - Extempore"}}
+   dm_faust:            {name: {en: "digital media - FAUST, Functional Audio STream"}}
+   dm_hmsl:             {name: {en: "digital media - Hierarchical Music Specification Language"}}
+   dm_impromptu:        {name: {en: "digital media - Impromptu"}, family: scheme}
+   dm_jfugue:           {name: {en: "digital media - JFugue"}}
+   dm_jmusic:           {name: {en: "digital media - jMusic"}}
+   dm_jsyn:             {name: {en: "digital media - JSyn"}}
+   dm_kyma:             {name: {en: "digital media - Kyma sound design language"}}
+   dm_maxmsp:           {name: {en: "digital media - Max/MSP"}}
+   dm_mml:              {name: {en: "digital media - Music Macro Language"}}
+   dm_musicn:           {name: {en: "digital media - MUSIC-N"}}
+   dm_nyquist:          {name: {en: "digital media - Nyquist"}}
+   dm_om:               {name: {en: "digital media - OpenMusic"}}
+   dm_pd:               {name: {en: "digital media - Pure Data"}}
+   dm_reaktor:          {name: {en: "digital media - Reaktor"}}
+   dm_sonicpi:          {name: {en: "digital media - Sonic Pi"}}
+   dm_saol:             {name: {en: "digital media - Structured Audio Orchestra Language"}}
+   dm_super:            {name: {en: "digital media - SuperCollider"}}
+   dm_se:               {name: {en: "digital media - SynthEdit"}}
+   datascript:          {name: {en: "DataScript"}}
+   dcl:                 {name: {en: "Digital Command Language - vms"}}
+   deb_control:         {name: {en: "Debian control file"}}
+   deb_copyright:       {name: {en: "Debian copyright file"}}
+   deb_sources:         {name: {en: "Debian sources conf"}}
+   decnet_cterm:        {name: {en: "DECnet CTERM: Command Terminal, Century Term"}}
+   def:                 {name: {en: "Microsoft Module-Definition (.def) file"}}
+   desktop:             {name: {en: "Desktop Entry Specification"}}
+   devtree:             {name: {en: "device tree dts/dtsi"}}
+   dict_conf:           {name: {en: "dict(1) conf"}}
+   dictd_conf:          {name: {en: "dictd(1) conf"}}
+   diff:                {name: {en: "diff"}}
+   dircolors:           {name: {en: "dircolors input"}}
+   django:              {name: {en: "Django template"}}
+   dnsmasq:             {name: {en: "dnsmasq conf"}}
+   docbook_sgml:        {name: {en: "DocBook SGML"}, family: sgml}
+   docbook_xml:         {name: {en: "DocBook XML"}, family: xml}
+   dockerfile:          {name: {en: "Dockerfile"}}
+   dos:                 {name: {en: "DOS"}}
+   dos_batch:           {name: {en: "DOS Batch"}, family: dos}
+   doxygen:             {name: {en: "DoxyGen"}}
+   dsssl:               {name: {en: "Document Style Semantics and Specification Language"}}
+   dtrace:              {name: {en: "Solaris DTrace D script"}}
+   dts:                 {name: {en: "date time stamp"}}
+   dylan:               {name: {en: "Dylan"}}
+   dylan_intr:          {name: {en: "Dylan introspection"}}
+   dylan_lid:           {name: {en: "Dylan Library Interface"}}
+
+# E                     ________________________________________________________________________
+   e:                   {name: {en: "E programming language"}, family: java}
+   eda_altera:          {name: {en: "Altera Hardware Description Language"}}
+   eda_diva:            {name: {en: "SKILL Diva verification rules"}}
+   eda_dracula:         {name: {en: "Dracula design rule checking"}}
+   eda_haste:           {name: {en: "IC programming - Haste for VLSI IC"}}
+   eda_haste_pre:       {name: {en: "IC programming - Haste preprocessor"}}
+   eda_magma:           {name: {en: "IC design - Magma"}}
+   eda_mentor:          {name: {en: "IC design - Mentor"}}
+   eda_sdc:             {name: {en: "IC design - Synopsis Design Constraints"}}
+   eda_skill:           {name: {en: "Silicon Compiler Interface Language (Cadence)"}, family: lisp}
+   eda_specman:         {name: {en: "Specman E-Language"}}
+   eda_spice:           {name: {en: "IC design - SPICE"}}
+   eda_vams:            {name: {en: "Verilog-AMS (analogue and mixed signal"}, family: verilog}
+   eda_vera:            {name: {en: "IC verification - OpenVera"}}
+   eda_verilog:         {name: {en: "Verilog HDL (hardware description language), IEEE 1364"}}
+   eda_vhdl:            {name: {en: "VHDL [VHSIC (Very High Speed Integrated Circuit) HDL]"}}
+   eda_vsy:             {name: {en: "SystemVerilog, IEEE 1800"}, family: verilog}
+   edif:                {name: {en: "Electronic Design Interchange Format s-expressions"}}
+   eiffel:              {name: {en: "Eiffel"}}
+   eiffel_pyxis:        {name: {en: "Eiffel Pyxis (Lace replacement)"}}
+   elinks_conf:         {name: {en: "elinks(1) conf"}}
+   elm_filter:          {name: {en: "Elm Filter"}}
+   email:               {name: {en: "raw emails"}}
+   embedix_ecd:         {name: {en: "Embedix Component Description"}}
+   erlang:              {name: {en: "Erlang"}}
+   eruby_tpl:           {name: {en: "eRuby (Embedded Ruby) template"}}
+   esmtp_conf:          {name: {en: "ESMTP conf"}}
+   esql:                {name: {en: "language embedded SQL"}}
+   esql_c:              {name: {en: "ESQL-C"}, family: esql}
+   essbase_script:      {name: {en: "Essbase script"}}
+   esterel:             {name: {en: "Esterel"}}
+   eterm_conf:          {name: {en: "eterm(1) conf"}}
+   euphoria:            {name: {en: "openEuphoria"}}
+   euphoria_3:          {name: {en: "Euphoria 3 (legacy)"}}
+   exim_conf:           {name: {en: "Exim conf"}}
+   expect:              {name: {en: "Expect script"}}
+
+# F                     ________________________________________________________________________
+   falcon_conf:         {name: {en: "Falcon HTTPd for Ruby, conf"}}
+   fantom:              {name: {en: "Fantom"}}
+   fetchmail_conf:      {name: {en: "Fetchmail conf"}}
+   flex:                {name: {en: "Flex fast lexical analyzer generator"}, family: lex}
+   flexwiki:            {name: {en: "FlexWiki"}}
+   form:                {name: {en: "FORM symbolic manipulation system"}}
+   forth:               {name: {en: "FORTH"}}
+   fortran:             {name: {en: "Fortran"}}
+   foxpro:              {name: {en: "FoxPro"}}
+   framescript:         {name: {en: "FrameMaker FrameScript"}}
+   fstab:               {name: {en: "fstab"}}
+   fuge:                {name: {en: "Tinyfugue MUD"}}
+   fvwm_conf:           {name: {en: "FVWM conf"}}
+   fvwm2m4:             {name: {en: "FvwM4 preprocessed Fvwm2 conf"}}
+
+# G                     ________________________________________________________________________
+   gdb:                 {name: {en: "GDB command"}}
+   gdmo:                {name: {en: "ISO-10165-4; Guidelines for the Definition of Managed Object"}}
+   gedcom:              {name: {en: "Genealogical Data Communication"}}
+   git:                 {name: {en: "Git output"}}
+   git_commit:          {name: {en: "Git commit"}}
+   git_conf:            {name: {en: "Git conf"}}
+   git_rebase:          {name: {en: "Git rebase"}}
+   git_send_email:      {name: {en: "Git send-email"}}
+   gitolite:            {name: {en: "gitolite conf"}}
+   gkrellm_theme:       {name: {en: "gkrellmrc gkrellm theme"}}
+   gml_adl:             {name: {en: "graphical modeling - Architecture description language"}}
+   gml_aadl:            {name: {en: "graphical modeling - AADL"}}
+   gml_bt:              {name: {en: "graphical modeling - Behaviour Tree"}}
+   gml_bpml:            {name: {en: "graphical modeling - Business Process Modeling Language"}, family: xml}
+   gml_bpmn:            {name: {en: "graphical modeling - Business Process Modeling Notation"}}
+   gml_ck:              {name: {en: "graphical modeling - C-K theory"}}
+   gml_drakon:          {name: {en: "graphical modeling - DRAKON"}}
+   gml_eeml:            {name: {en: "graphical modeling - Extended Enterprise Modeling Language"}}
+   gml_express:         {name: {en: "graphical modeling - EXPRESS/ EXPRESS-G"}}
+   gml_fmc:             {name: {en: "graphical modeling - Fundamental Modeling Concepts"}}
+   gml_idef:            {name: {en: "graphical modeling - IDEF"}}
+   gml_jsp:             {name: {en: "graphical modeling - Jackson Structured Programming"}}
+   gml_lepus:           {name: {en: "graphical modeling - LePUS3"}}
+   gml_orm:             {name: {en: "graphical modeling - Object-Role Modeling"}}
+   gml_petri:           {name: {en: "graphical modeling - Petri net"}}
+   gml_sdl:             {name: {en: "graphical modeling - Specification and Description Language"}}
+   gml_sn:              {name: {en: "graphical modeling - Southbeach Notation"}}
+   gml_somf:            {name: {en: "graphical modeling - Service-oriented modeling framework"}}
+   gml_sysml:           {name: {en: "graphical modeling - SysML"}}
+   gml_uml:             {name: {en: "graphical modeling - Unified Modeling Language"}}
+   gnash:               {name: {en: "gnash conf"}}
+   gnats_sendpr_conf:   {name: {en: "GNATS send-pr conf"}}
+   gnu_arch:            {name: {en: "GNU Arch inventory"}}
+   gnuplot:             {name: {en: "gnuplot"}}
+   go:                  {name: {en: "Go"}}
+   godoc:               {name: {en: "Godoc"}}
+   google_apps_script:  {name: {en: "Google Apps Script"}}
+   gp:                  {name: {en: "PARI/GP"}}
+   gpg:                 {name: {en: "GPG conf"}}
+   gprof:               {name: {en: "gprof output"}}
+   grads:               {name: {en: "GrADS Grid Analysis and Display System script"}}
+   gretl:               {name: {en: "Gnu Regression, Econometrics and Time-series Library"}}
+   groff:               {name: {en: "groff"}, family: nroff}
+   groovy:              {name: {en: "Groovy"}}
+   grub:                {name: {en: "GRUB conf"}}
+   gsp:                 {name: {en: "GNU Server Pages"}}
+   gtk_theme:           {name: {en: "Gtk+ theme/ gtkrc"}}
+
+# H                     ________________________________________________________________________
+   haml:                {name: {en: "Haml HTML Abstraction Markup Language"}}
+   hamster:             {name: {en: "Hamster Script"}}
+   hercules:            {name: {en: "Hercules IC"}}
+   haskell:             {name: {en: "Haskell"}}
+   haskell_c2hs:        {name: {en: "Haskell + c2hs binding hooks"}}
+   hex_intel:           {name: {en: "Intel HEX"}}
+   hg_commit:           {name: {en: "hg (Mercurial) commit"}}
+   hog:                 {name: {en: "hog (Snort conf + rules)"}}
+   html:                {name: {en: "HTML"}}
+   html_cheetah:        {name: {en: "HTML with Cheetah tags"}, family: html}
+   html_django:         {name: {en: "Django HTML template"}, family: [html, django]}
+   html_m4:             {name: {en: "HTML and M4"}, family: [html, m4]}
+   html_os:             {name: {en: "Aestiva HTML/OS"}, family: html}
+   html_tidy_conf:      {name: {en: "HTML Tidy conf"}}
+   hyper_builder:       {name: {en: "Hyper Builder"}, family: html}
+
+# I                     ________________________________________________________________________
+   i4gl:                {name: {en: "IBM Informix-4GL"}}
+   ibi_focus:           {name: {en: "Information Builders Inc., FOCUS 4GL"}}
+   ibi_mfd:             {name: {en: "FOCUS Master File Description"}}
+   ibm_purify_log:      {name: {en: "IBM PurifyPlus C/C++ memory debugger logs"}} # https://en.wikipedia.org/wiki/IBM_Rational_Purify
+   icewm_menu:          {name: {en: "Icewm Menu"}}
+   ico:                 {name: {en: "ICO, CUR, icon and cursor defn"}}
+   idl:                 {name: {en: "Interface Description Language"}}
+   idl_ms:              {name: {en: "Microsoft IDL dialect"}}
+   idlang:              {name: {en: "Interactive Data Language"}}
+   ihs_eviews:          {name: {en: "IHS EViews"}}
+   ilc_winbatch:        {name: {en: "Wilson WindowWare/ Island Lake Consulting Winbatch script"}}
+   indent:              {name: {en: "indent(1) conf, C language source code formatting"}}
+   inform:              {name: {en: "Inform interactive fiction"}}
+   ini:                 {name: {en: "INI"}}
+   initng:              {name: {en: "Initng (SysV init ng)"}}
+   innovdp_upstr_dat:   {name: {en: "Innovation Data Processing upstream.dat"}}
+   innovdp_upstr_inst:  {name: {en: "Innovation Data Processing upstreaminstall.log"}}
+   innovdp_upstr_log:   {name: {en: "Innovation Data Processing upstream.log"}}
+   innovdp_upstr_rpt:   {name: {en: "Innovation Data Processing upstream.rpt"}}
+   innovdp_usserver:    {name: {en: "Innovation Data Processing usserver.log"}}
+   innovdp_usw2kagt:    {name: {en: "Innovation Data Processing usserver.logusw2kagtlog.vim"}}
+   ipfilter_conf:       {name: {en: "ipfilter(1) conf"}}
+   installshield:       {name: {en: "InstallShield script"}}
+   inno_setup:          {name: {en: "Inno Setup msw installer"}}
+   ist:                 {name: {en: "makeindex(1) formatter-independent index processor"}}
+
+# J                     ________________________________________________________________________
+   j:                   {name: {en: "J"}}
+   jal:                 {name: {en: "JAL"}}
+   jam:                 {name: {en: "JAM"}}
+   jam_stapl:           {name: {en: "Jam Standard Test and Programming Language, PLD ISP"}}
+   jargon:              {name: {en: "jargon(1) dictionary"}}
+   java:                {name: {en: "Java"}}
+   java_webmacro:       {name: {en: "Java WebMacro"}, successor: apache_velocity}
+   javacc:              {name: {en: "JavaSoft JavaCC"}}
+   jcl_vse:             {name: {en: "Job Control Language, DOS/360 and z/VSE"}}
+   jcl_zos:             {name: {en: "Job Control Language, OS/360 and z/OS"}}
+   jess:                {name: {en: "Jess, Java Platform Rule Engine"}}
+   jgraph:              {name: {en: "jgraph"}}
+   jovial:              {name: {en: "JOVIAL J73"}}
+   js:                  {name: {en: "JavaScript"}}
+   json:                {name: {en: "JSON"}}
+   jsp:                 {name: {en: "Java Server Pages"}}
+
+# K                     ________________________________________________________________________
+   linux_kconfig:       {name: {en: "Linux Kconfig"}}
+   kivy:                {name: {en: "Kivy Python NUI Framework"}}
+   kix:                 {name: {en: "KiXtart script"}}
+   kimwitu:             {name: {en: "Kimwitu/Kimwitu++"}}
+   kscript:             {name: {en: "Kotlin Kscript"}}
+   ksh:                 {name: {en: "Korn Shell"}, family: sh}
+
+# L                     ________________________________________________________________________
+   lamda_prolog:        {name: {en: "Lamda Prolog"}, family: prolog}
+   ld:                  {name: {en: "ld(1) linker script"}}
+   ldap_conf:           {name: {en: "ldap.conf(5)"}}
+   ldap_ldif:           {name: {en: "LDAP LDIF"}}
+   lex:                 {name: {en: "Lex lexical analyzer generator"}}
+   lftp_conf:           {name: {en: "lftp(1) conf"}}
+   lhaskell:            {name: {en: "Haskell with Literate comments"}}
+   libao_conf:          {name: {en: "libao.conf(5)"}}
+   lifelines:           {name: {en: "LifeLines geneology"}}
+   lilo_conf:           {name: {en: "lilo conf"}}
+   lisp:                {name: {en: "Lisp"}}
+   lite_sql:            {name: {en: "LiteSQL"}}
+   litestep_conf:       {name: {en: "LiteStep conf"}}
+   locale:              {name: {en: "FDCC (Formal Definitions of Cultural Conventions) locale conf"}}
+   logtalk:             {name: {en: "Logtalk"}, family: prolog}
+   lotos:               {name: {en: "Language Of Temporal Ordering Specifications, IS8807"}}
+   lotusscript:         {name: {en: "LotusScript"}}
+   lout:                {name: {en: "Basser Lout document formatting"}}
+   lpc:                 {name: {en: "LPC, Lars Pensjö C"}}
+   lsl:                 {name: {en: "Linden Scripting Language (Second Life)"}}
+   lua:                 {name: {en: "Lua"}}
+   lynx_conf:           {name: {en: "Lynx conf"}}
+   lynx_style:          {name: {en: "Lynx style"}}
+
+# M                     ________________________________________________________________________
+   magicl:              {name: {en: "MAGIC/L"}, family: forth}
+   mailcap:             {name: {en: "mailcap(5) conf"}}
+   make:                {name: {en: "Makefile"}}
+   mallard:             {name: {en: "Mallard markup"}}
+   man:                 {name: {en: "man page"}}
+   man_conf:            {name: {en: "man.conf(5)"}}
+   maple:               {name: {en: "Maple V"}}
+   mason:               {name: {en: "Perl + HTML"}, family: [html, perl]}
+   mathematica:         {name: {en: "Mathematica"}}
+   matlab:              {name: {en: "Matlab"}}
+   matlab_mupad:        {name: {en: "Matlab MuPAD"}}
+   maxima:              {name: {en: "Maxima"}}
+   maya_mel:            {name: {en: "Autodesk Maya Extension Language"}}
+   metafont:            {name: {en: "Metafont"}}
+   md:                  {name: {en: "Markdown"}}
+   media_nsc:           {name: {en: "multimedia Stream Descriptor 'NSC'"}}
+   media_sap:           {name: {en: "multimedia Stream Descriptor 'SAP'"}}
+   media_sdp:           {name: {en: "multimedia Stream Descriptor 'SDP'"}}
+   meltwater_datasift:  {name: {en: "Curated Stream Definition Language (CSDL)"}}
+   metapost:            {name: {en: "MetaPost"}}
+   ml:                  {name: {en: "ML (Meta Language)"}, family: lisp}
+   modula_2:            {name: {en: "Modula 2"}}
+   modula_3:            {name: {en: "Modula 3"}}
+   moo:                 {name: {en: "Moo"}}
+   motif_uil:           {name: {en: "Motif UIL (User Interface Language)"}}
+   mplayer_conf:        {name: {en: "mplayer conf"}}
+   ms_doc:              {name: {en: "Microsoft .doc document"}}
+   ms_dot:              {name: {en: "Microsoft .dot template"}}
+   ms_messages:         {name: {en: "MS Message (*.mc)"}}
+   ms_wsh:              {name: {en: "Microsoft Windows Script Host"}}
+   multibase_cl:        {name: {en: "MULTIBASE CL"}}
+   murphi:              {name: {en: "Murphi Verification System"}}
+   mush:                {name: {en: "MUSHCode"}}
+   mutt_conf:           {name: {en: "Mutt conf"}}
+
+# N                     ________________________________________________________________________
+   n1ql:                {name: {en: "N1QL, Couchbase SQL for documents"}}
+   nano_conf:           {name: {en: "GNU Nano conf"}}
+   nastran:             {name: {en: "NASA Structural Analysis System, NASTRAN input/DMAP"}}
+   novell_ncf:          {name: {en: "ovell 'NCF' Batch File"}}
+   neomutt_conf:        {name: {en: "NeoMutt conf"}}
+   netrc:               {name: {en: ".netrc(5) (rexec, ftp, youtube-dl etc)"}}
+   nfs_exports:         {name: {en: "NFS exports conf"}}
+   ni_xmath:            {name: {en: "National Instruments Xmath"}}
+   ninja_build:         {name: {en: "Ninja build"}}
+   nqc:                 {name: {en: "LEGO NQC - Not Quite C"}}
+   nroff:               {name: {en: "nroff"}}
+   nsis:                {name: {en: "Nullsoft Scriptable Install System"}}
+
+# O                     ________________________________________________________________________
+   objc:                {name: {en: "Objective-C"}}
+   objcpp:              {name: {en: "Objective-C++"}}
+   ocaml:               {name: {en: "OCaml"}}
+   occam:               {name: {en: "occam"}}
+   omnimark:            {name: {en: "OmniMark"}}
+   omnipeek:            {name: {en: "WildPackets Omnipeek (Etherpeek) Decoder"}}
+   ont_ace:             {name: {en: "ontology lang - Attempto Controlled English"}}
+   ont_cl:              {name: {en: "ontology lang - Common Logic"}}
+   ont_cycl:            {name: {en: "ontology lang - CycL"}}
+   ont_daml:            {name: {en: "ontology lang - DAML+OIL"}}
+   ont_dogma:           {name: {en: "ontology lang - DOGMA"}}
+   ont_exec:            {name: {en: "ontology lang - Executable English"}}
+   ont_f_logic:         {name: {en: "ontology lang - F-Logic"}}
+   ont_kif:             {name: {en: "ontology lang - KIF - Knowledge Interchange Format"}}
+   ont_kl_one:          {name: {en: "ontology lang - KL-ONE"}}
+   ont_km:              {name: {en: "ontology lang - KM"}}
+   ont_loom:            {name: {en: "ontology lang - LOOM"}}
+   ont_ocml:            {name: {en: "ontology lang - OCML, Operational Conceptual Modeling Language"}}
+   ont_okbc:            {name: {en: "ontology lang - OKBC, Open Knowledge Base Connectivity"}}
+   ont_olingua:         {name: {en: "ontology lang - KIF / Ontolingua"}, family: ont_kif}
+   ont_oil:             {name: {en: "ontology lang - OIL, Ontology Inference Layer"}}
+   ont_owl:             {name: {en: "ontology lang - OWL, Web Ontology Language"}}
+   ont_plib:            {name: {en: "ontology lang - PLIB, Parts LIBrary"}}
+   ont_racer:           {name: {en: "ontology lang - RACER"}}
+   ont_rdf:             {name: {en: "ontology lang - RDF - Resource Description Framework"}}
+   ont_rdfs:            {name: {en: "ontology lang - RDF Schema"}}
+   ont_shoe:            {name: {en: "ontology lang - SHOE, Simple HTML Ontology Extensions"}}
+   ont_uml:             {name: {en: "ontology lang - OntoUML"}}
+   openssh_conf:        {name: {en: "OpenSSH client conf"}}
+   opensshd_conf:       {name: {en: "OpenSSH server conf"}}
+   opl:                 {name: {en: "Open Programming Language"}, family: basic}
+   oracle_conf:         {name: {en: "Oracle conf"}}
+   oval:                {name: {en: "Open Vulnerability and Assessment Language"}}
+   ovms_pli:            {name: {en: "OpenVMS PL/I"}}
+
+# P                     ________________________________________________________________________
+   pam_conf:            {name: {en: "pam(8) conf"}}
+   pam_limits_conf:     {name: {en: "limits(5) conf"}}
+   papp:                {name: {en: "Perl APPlication"}}
+   pascal:              {name: {en: "Pascal"}}
+   pccts:               {name: {en: "Purdue Compiler-Compiler Tool Set"}}
+   pdf:                 {name: {en: "PDF"}}
+   perl:                {name: {en: "Perl"}}
+   perl_tt:             {name: {en: "Perl Template Toolkit"}}
+   perl_tthtm:          {name: {en: "Perl Template Toolkit, embedded with HTML"}, family: html}
+   perl_ttjs:           {name: {en: "Perl Template Toolkit, embedded with Javascript"}, family: javascript}
+   perl_xs:             {name: {en: "Perl extension interface"}}
+   pf:                  {name: {en: "OpenBSD packet filter conf"}}
+   php:                 {name: {en: "PHP"}}
+   pike:                {name: {en: "Pike"}}
+   pike_cmod:           {name: {en: "Pike Cmod module"}, family: c}  # is it actually both C & Pike combined?
+   pilrc:               {name: {en: "Palm OS resource compiler"}}
+   pine_conf:           {name: {en: "Pine (email) conf"}}
+   pinfo_conf:          {name: {en: "pinfo(1) conf"}}
+   plp:                 {name: {en: "Perl in HTML"}}
+   po:                  {name: {en: "GNU gettext PO file"}}
+   pod:                 {name: {en: "Perl POD document"}}
+   postfix_aliases:     {name: {en: "Postfix aliases"}}
+   postfix_conf:        {name: {en: "Postfix main.cf conf"}}
+   pov:                 {name: {en: "PoV-Ray Scene Description Language"}}
+   pov_conf:            {name: {en: "PoV-Ray conf"}}
+   ppd:                 {name: {en: "PostScript printer description"}}
+   ppwiz:               {name: {en: "PPWizard (preprocessor by Dennis Bareis)"}}
+   prescribe2e:         {name: {en: "Kyocera PreScribe2e"}}
+   printcap:            {name: {en: "lpd printcap conf"}}
+   privoxy:             {name: {en: "Privoxy actions"}}
+   procmail:            {name: {en: "Procmail rules"}}
+   progress_4gl:        {name: {en: "Progress 4GL"}}
+   prolog:              {name: {en: "PROLOG"}}
+   promela:             {name: {en: "PROMELA - Process or Protocol Meta Language"}}
+   properties:          {name: {en: "Java properties"}}
+   protobuf:            {name: {en: "Protocol Buffers"}}
+   protobuf_idl:        {name: {en: "Protocol Buffers interface definition language"}}
+   protocols:           {name: {en: "protocols(5) IP protocols list"}}
+   ps:                  {name: {en: "PostScript"}}
+   psf:                 {name: {en: "Software Distributor product specification file, POSIX 1387.2-1995"}}
+   psi_purify_log:      {name: {en: "Pure Software Inc. Purify C/C++ memory debugger logs"}} # https://web.stanford.edu/class/cs343/resources/purify-ug.pdf
+   py_spyce:            {name: {en: "Python Spyce, python in html"}, family: python}
+   pyrex:               {name: {en: "Pyrex"}, family: Python}
+   python:              {name: {en: "Python"}, influenced_by: [abcpl]}
+
+# Q                     ________________________________________________________________________
+   quakec:              {name: {en: "QuakeC"}, family: c}
+
+# R                     ________________________________________________________________________
+   r:                   {name: {en: "R, GNU S"}}
+   r_help:              {name: {en: "R help"}}
+   r_md:                {name: {en: "R with markdown"}}
+   r_noweb:             {name: {en: "R noweb"}}
+   racc:                {name: {en: "Ruby racc"}}
+   radiance:            {name: {en: "Radiance Scene Description"}}
+   raku:                {name: {en: "Raku"}}
+   raml:                {name: {en: "RAML - RESTful API Modeling Language"}}
+   ratpoison:           {name: {en: "Ratpoison conf/commands"}}
+   rcs:                 {name: {en: "Revision Control System"}}
+   rcs_log:             {name: {en: "RCS log output"}}
+   resource:            {name: {en: "Microsoft Resource (.rc) files"}}
+   readline_conf:       {name: {en: "GNU readline conf"}}
+   rebol:               {name: {en: "Rebol"}}
+   redif:               {name: {en: "ReDIF, Research Documents Information Format"}}
+   registry:            {name: {en: "Microsoft Registry export with regedit"}}
+   relax_ng:            {name: {en: "Relax NG"}}
+   relax_ngc:           {name: {en: "Relax NG compact"}}
+   remind:              {name: {en: "Remind calendar and alarm"}}
+   resolv_conf:         {name: {en: "resolv.conf(5)"}}
+   reva:                {name: {en: "Reva Forth"}, family: forth}
+   rexx:                {name: {en: "Rexx"}}
+   rib:                 {name: {en: "Renderman Interface Bytestream"}}
+   rock_desc:           {name: {en: "ROCK Linux .desc file"}}
+   robots_txt:          {name: {en: "robots.txt"}}
+   rpcgen:              {name: {en: "rpcgen"}, family: c}
+   rpl:                 {name: {en: "RPL, Reverse Polish Lisp"}}
+   rpm_spec:            {name: {en: "RPM package spec"}}
+   rrst:                {name: {en: "reST with R code chunks"}, family: rest}
+   rst:                 {name: {en: "reStructuredText documentation"}}
+   rtf:                 {name: {en: "Rich Text Format"}}
+   ruby:                {name: {en: "Ruby"}}
+   ruby_treetop:        {name: {en: "Ruby Treetop parsing expression grammar"}}
+   rust:                {name: {en: "Rust"}, family: cpp}
+   rxvt_conf:           {name: {en: "[m]rxvt conf"}}
+
+# S                     ________________________________________________________________________
+   s_lang:              {name: {en: "S-Lang,,"}}
+   samba_conf:          {name: {en: "samba smb.conf"}}
+   sap_abap:            {name: {en: "SAP ABAP"}}
+   sas_sasi:            {name: {en: "SAS Institute's SAS"}}
+   sather:              {name: {en: "Sather"}}
+   sbt:                 {name: {en: "sbt, Scala Build Tool"}}
+   scala:               {name: {en: "Scala"}}
+   scheme:              {name: {en: "Scheme"}}
+   scheme_chicken:      {name: {en: "Scheme + CHICKEN"}}
+   scilab:              {name: {en: "Scilab"}}
+   screen_conf:         {name: {en: "GNU screen conf"}}
+   sdl_3dmlw:           {name: {en: "3DMLW Scene Description Language"}}
+   sdl_itut:            {name: {en: "Specification and Description Language, ITU-T Z.100-106"}}
+   sdl_povray:          {name: {en: "POV-Ray Scene Description Language"}}
+   sdl_tao:             {name: {en: "Tao Scene Description Language"}}
+   sdl_x3d:             {name: {en: "X3D Scene Description Language"}, supercedes: [obs_vrml]}
+   sdml:                {name: {en: "Simple DirectMedia Layer"}}
+   sed:                 {name: {en: "sed(1)"}}
+   seebeyond_monk:      {name: {en: "SeeBeyond Monk"}}
+   sendmail_conf:       {name: {en: "sendmail conf"}}
+   sensors_conf:        {name: {en: "sensors.conf(5)"}}
+   services:            {name: {en: "services(5) IP services list"}}
+   setserial:           {name: {en: "setserial(8) conf"}}
+   sgml:                {name: {en: "SGML - Standard Generalized Markup Language"}}
+   sgml_catalog:        {name: {en: "SGML catalog"}}
+   sgml_decl:           {name: {en: "SGML declaration"}}
+   sgml_linuxdoc:       {name: {en: "SGML linuxdoc"}}
+   sh:                  {name: {en: "POSIX Shell"}}
+   shopify_liquid:      {name: {en: "Shopify Liquid template"}}
+   sicad:               {name: {en: "Silicon Integration Initiative SiCAD"}}
+   sieve_filter:        {name: {en: "Sieve email filter"}}
+   simula:              {name: {en: "Simula"}, family: algol}
+   sinda_fluint:        {name: {en: "Systems Improved Numerical Differencing Analyzer and Fluid Integrator (SINDA85)"}}
+   sinda_cmp:           {name: {en: "sinda compare file"}}
+   sinda_out:           {name: {en: "sinda output file"}}
+   sisu:                {name: {en: "SiSU information Structuring Universe"}}
+   sl:                  {name: {en: "RenderMan Shader Language"}}
+   slp_conf:            {name: {en: "RFC 2614 Service Location Protocol (SLP, srvloc)"}}
+   slp_reg:             {name: {en: "RFC 2614 Service Location Protocol service registration"}}
+   slp_spi:             {name: {en: "RFC 2614 Service Location Protocol service provider interface"}}
+   slrn_conf:           {name: {en: "Slrn conf"}}
+   slrn_score:          {name: {en: "Slrn scores"}}
+   smalltalk:           {name: {en: "Smalltalk"}}
+   smarty:              {name: {en: "Smarty template"}}
+   smil:                {name: {en: "SMIL, Synchronized Multimedia Integration Language, W3C"}}
+   sml:                 {name: {en: "Standard ML (Standard Meta Language)"}, family: ml}
+   snmp_mib:            {name: {en: "SNMP MIB and SMI files"}}
+   snns_net:            {name: {en: "SNNS (Stuttgart Neural Network Simulator) network"}}
+   snns_pat:            {name: {en: "SNNS (Stuttgart Neural Network Simulator) pattern"}}
+   snns_res:            {name: {en: "SNNS (Stuttgart Neural Network Simulator) result"}}
+   snobol4:             {name: {en: "SNOBOL4 (1957)"}}
+   spacedesign_tss_cl:  {name: {en: "Spacedesign TSS (Thermal Synthesizer System) cmd line"}}
+   spacedesign_tss_geo: {name: {en: "Spacedesign TSS (Thermal Synthesizer System) geometry"}}
+   spacedesign_tss_opt: {name: {en: "Spacedesign TSS (Thermal Synthesizer System) optics"}}
+   sql:                 {name: {en: "SQL"}}
+   sql_anywhere:        {name: {en: "SQL Anywhere"}, family: sql}
+   sql_hana:            {name: {en: "SAP HANA in memory db SQL"}, family: sql}
+   sql_informix:        {name: {en: "Informix Dynamic Server 'SPL'"}, family: sql}
+   sql_java:            {name: {en: "sqlj"}, family: sql}
+   sql_ms_stp:          {name: {en: "MS SQL Server stored procedures (STP)"}, family: sql}
+   sql_msql:            {name: {en: "msql"}, family: sql}
+   sql_mysql:           {name: {en: "mysql"}, family: sql}
+   sql_oforms:          {name: {en: "Oracle SQL*Forms"}, family: sql}
+   sql_oracle:          {name: {en: "Oracle SQL"}, family: sql}
+   sql_plsql:           {name: {en: "Oracle PL/SQL"}, family: sql}
+   sql_sqr:             {name: {en: "Hyperion SQR Production Reporting"}}
+   squid_conf:          {name: {en: "Squid conf"}}
+   srec:                {name: {en: "Motorola S-Record/ SREC/ SRECORD/ S19/ S28/ S37"}}
+   stata_mata:          {name: {en: "Mata, Stata Matrix programming"}}
+   stata_smcl:          {name: {en: "SMCL - Stata Markup and Control Language"}}
+   strace:              {name: {en: "strace output"}}
+   stratus_vos_cm:      {name: {en: "Stratus VOS (Virtual Operating System) CM macro"}}
+   st:                  {name: {en: "StringTemplate template"}}
+   sudoers:             {name: {en: "sudoers(5) conf"}}
+   svg:                 {name: {en: "SVG - Scalable Vector Graphics"}}
+   svn:                 {name: {en: "Subversion svn commit"}}
+   symbian_mmp:         {name: {en: "Symbian meta-makefile definition (MMP)"}}
+   systemd_unit:        {name: {en: "systemd.unit(5) conf"}, family: ini}
+   sysv_inittab:        {name: {en: "SysV inittab"}}
+
+# T                     ________________________________________________________________________
+   tads:                {name: {en: "Text Adventure Development System"}}
+   tak2000_cmp:         {name: {en: "TAK2, TAK3, TAK2000 thermal modeling input"}}
+   tap:                 {name: {en: "TAP - Test Anything Protocol"}}
+   tar_list:            {name: {en: "tar(1) list"}}
+   tcl:                 {name: {en: "Tcl/Tk"}}
+   tcsh:                {name: {en: "tcsh"}, family: csh}
+   tera_term:           {name: {en: "Tera Term Language (TTL)"}}
+   termcap:             {name: {en: "termcap(5) conf"}}
+   terminfo:            {name: {en: "terminfo(5) conf"}}
+   tex:                 {name: {en: "TeX"}}
+   tex_plain:           {name: {en: "TeX plain (info rot, dunno - see Vim's plaintex.vim)"}}
+   tex_web:             {name: {en: "TeX WEB literate programming system (Knuth)"}}
+   texinfo:             {name: {en: "Texinfo macro"}}
+   texmf:               {name: {en: "Web2C TeX texmf.cnf conf"}}
+   tmux:                {name: {en: "tmux(1) conf"}}
+   trasis:              {name: {en: "NASA Thermal Radiation Analysis input"}}
+   txt_tpp:             {name: {en: "tpp - Text Presentation Program"}}
+
+# U                     ________________________________________________________________________
+   udev_conf:           {name: {en: "udev(8) conf"}}
+   udev_perm:           {name: {en: "udev(8) perms"}}
+   udev_rules:          {name: {en: "udev(8) rules"}}
+   unix_group:          {name: {en: "group file"}, family: unix_passwd}
+   unix_host_conf:      {name: {en: "unix host.conf"}}
+   unix_hosts_access:   {name: {en: "hosts allow deny"}, family: conf}
+   unix_log:            {name: {en: "Unix logfile"}}
+   unix_login_access:   {name: {en: "login.access(5)"}, family: conf}
+   unix_login_defs:     {name: {en: "login.defs(5)"}, family: conf}
+   unix_modules_conf:   {name: {en: "BSD kernel modules conf"}}
+   unix_passwd:         {name: {en: "unix passwd(5) file"}}
+   unix_sysctl:         {name: {en: "unix sysctl.conf(5)"}}
+   unrealscript:        {name: {en: "UnrealScript (Unreal Engine 3)"}}
+   updatedb_conf:       {name: {en: "updatedb.conf(5)"}}
+   upstart_job:         {name: {en: "Upstart job file"}}
+
+# V                     ________________________________________________________________________
+   vala:                {name: {en: "Vala"}, family: cs}
+   valgrind_defs:       {name: {en: "Vgrindefs"}}
+   valgrind_model:      {name: {en: "Valgrind model"}}
+   valgrind_out:        {name: {en: "Valgrind memory debugger output"}}
+   vim_dir:             {name: {en: "Vim directory list"}}
+   vim_help:            {name: {en: "Vim help"}}
+   vim_info:            {name: {en: "Vim .viminfo"}}
+   vim_netrw:           {name: {en: "Vim netrw dirlist, hist etc"}}
+   vim_script:          {name: {en: "Vim script"}}
+   vim_tags:            {name: {en: "Vim tags list"}}
+   vim_vroom:           {name: {en: "Vim Vroom (testing and executable documentation)"}}
+   virata_aconfig:      {name: {en: "Vim tags list"}}
+   von_oppen_natural:   {name: {en: "von-oppen.com 'natural'"}}
+
+# W                     ________________________________________________________________________
+   wdiff:               {name: {en: "wDiff, wordwise diff"}}
+   web_change:          {name: {en: "WEB (CWEB?) Change"}}
+   wget_conf:           {name: {en: "wget(1) conf"}}
+   wml:                 {name: {en: "Website Meta Language"}}
+   wsml:                {name: {en: "Web Services Modeling Language"}}
+   wsdl:                {name: {en: "Web Services Description Language"}}
+   wvdial_conf:         {name: {en: "WvDial conf"}}
+
+# X                     ________________________________________________________________________
+   x_conf:              {name: {en: "X server conf"}}
+   x_resources:         {name: {en: "X resources/ defaults"}}
+   x_xkb:               {name: {en: "X keyboard conf"}}
+   xhtml:               {name: {en: "XHTML"}, family: html}
+   xinetd_conf:         {name: {en: "xinetd.conf(5)"}}
+   xml:                 {name: {en: "eXtensible Markup Language"}}
+   xml_dtd:             {name: {en: "XML Document Type Definition"}, family: xml}
+   xml_xbl:             {name: {en: "XML Binding Language"}, family: xml}
+   xml_xquery:          {name: {en: "XML Query"}, family: xml}
+   xml_xsd:             {name: {en: "XML Schema"}, family: xml}
+   xml_xslt:            {name: {en: "eXtensible Stylesheet Language Transformations"}, family: xml}
+   xmodmap_conf:        {name: {en: "xmodmap(1) conf"}}
+   xpm:                 {name: {en: "X pixmap"}}
+   xpm2:                {name: {en: "X pixmap v2"}}
+   xxd:                 {name: {en: "xxd(1) hexdump output"}}
+
+# Y                     ________________________________________________________________________
+   yacc:                {name: {en: "Yacc, Yet Another Compiler Compiler"}}
+   yaml:                {name: {en: "YAML"}}
+
+# Z                     ________________________________________________________________________
+   zeroc_slice:         {name: {en: "Slice, ZeroC Specification Language for Ice"}}
+   zimbu:               {name: {en: "Zimbu"}}
+   zope_dtml:           {name: {en: "Zope Dynamic Template Markup Language"}}
+   zsh:                 {name: {en: "zsh"}, family: sh}
+

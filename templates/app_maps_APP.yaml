@@ -1,0 +1,58 @@
+# This software is copyrighted, see the file "LICENSE" for copyright, use and distribution terms.
+
+# This is an example of an app_maps/application.yaml map file.
+#
+# It is a simple YAML map, containing:
+#
+#   - A protocol number (see the file protocol.txt for the current protocol number).
+#
+#   - A version number (initially 0) which in general should be increased for each new public
+#     release of this file.
+#
+#   - A release date, for the date on which this version was deemed.
+#
+#   - A map named lang_uid_to, mapping lang_uid keys to the following (both optional) keys:
+#
+#     - map: "your application's corresponding language identifier"
+#
+#     - run: ["first app specific config command", "next command"...]
+#
+# Although both "map" and "run" are optional, the "lang_uid:" key should always be included, to
+# simplify maintenance and help identify possible problems.
+#
+# "run" is optional and should be used sparingly, though it may be a useful way to tell your
+# application or editor how to set an appropriate syntax or computer language.
+#
+# For a full (and current) example, look at the app_maps/vim.yaml file, from which the below
+# examples are taken.
+
+protocol: 0
+version: 0
+released: 20191003
+lang_uid_to:
+
+   obs_basic_ibasic:    {map: ibasic}
+   unk_art_star_enterp: {map: art}
+
+   3d_obj:              {map: obj}
+   4dos_batch:          {map: btm}
+
+   a2ps_conf:           {map: a2ps}
+   aap_recipe:          {map: aap}
+   abaqus_fea:          {map: abaqus}
+   abel:                {map: abel}
+   acedb_model:         {map: acedb}
+   actvstt_perlscript:  {map: aspperl}
+   ada:                 {map: ada}
+   apache_conf:         {map: apachestyle}
+   apached_conf:        {map: apache}
+   algol:               {map: simula}
+
+   b:                   {map: b}
+   bash:
+      map: sh
+      run: ["let b:is_bash = 1", "set filetype=sh"]
+   bsh:
+      map: sh
+      run: ["let b:is_bsh=1", "set filetype=sh"]
+
