@@ -58,7 +58,7 @@ combination of the following or other file type identification systems:
  - operating system specific type-codes
  - operating system- and filesystem-specific extended attributes
 
-The [editorconfig](http://editorconfig.org/) project, in particular
+The [EditorConfig](http://editorconfig.org/) project, in particular
 editorconfig/editorconfig#190
 https://github.com/editorconfig/editorconfig/issues/190
 and
@@ -318,6 +318,7 @@ software license.
 ## See also
 See also:
 
+ - https://github.com/editorconfig/editorconfig/wiki/%5BDevelopment%5D-Discussion-of-language-filetype-support
  - https://en.wikipedia.org/wiki/List_of_programming_languages
  - https://en.wikipedia.org/wiki/Markup_language
  - https://en.wikipedia.org/wiki/List_of_markup_languages

@@ -97,7 +97,7 @@ released: 20191003
 uids:
 
 # alii                  ________________________________________________________________________
-   # Each syntax_uid key below, identifies a deemed alias of a syntax_uid.
+   # Each syntax_uid key below, identifies a deemed alias of one syntax_uid further below.
    # This is not a list of "many and various, for end user convenience, aliases", only an
    # austere set of "standards based or otherwise well known" alii.
 
@@ -118,7 +118,7 @@ uids:
 
 # unknown/ info rot     ________________________________________________________________________
    # Each syntax_uid key below identifies an unknown/info-rot computer language syntax, which is
-   # present due to a $syntax.vim syntax file being provided in the Vim 8.1 distribution.
+   # present due to a ${syntax}.vim syntax file being provided in the Vim 8.1 distribution.
 
    unk_denyhosts:       {unknown: true}
    unk_art_star_enterp: {unknown: true}
