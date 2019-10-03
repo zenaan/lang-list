@@ -128,7 +128,7 @@ The lang-list data structures are as follows:
 
 
 
-## lang-list Lookup Protocols
+## lang-list Lookup Protocol Functions
 
 Protocols for using `syntax_uid` are necessary to provide for:
  - backwards compatibility
@@ -136,7 +136,30 @@ Protocols for using `syntax_uid` are necessary to provide for:
  - deprecatability
  - changing, adding, and removing of aliases
 
-In the protocols (as pseudo code functions) below:
+As [seen here](https://github.com/editorconfig/editorconfig/issues/404#issuecomment-537875150),
+an EDITOR plugin will need to do something like the following:
+
+** 1. ** see that a file has been opened
+
+** 2. ** check the .editorconfig for settings for this file
+
+** 3. ** check if `syntax` (filetype) is declared for this file,
+
+** 3.a. ** if so, use the .editorconfig declared `$syntax` as the
+  `syntax_uid` (nee "filetype") for this file
+
+** 3.b.i. ** if not, use the $EDITOR's filetype detection to determine
+  the $EDITOR's filetype/syntax `SID` for this file
+
+** 3.b.ii. ** given $EDITOR's syntax `$SID`, use the lang-list
+  `app_map/$EDITOR.yaml` map to reverse-lookup the corresponding `syntax_uid`
+
+** 4. ** Finally, given the `$syntax_uid` for this file, lookup the
+  .editorconfig settings for this `$syntax_uid`
+
+
+In the protocol pseudo code functions below:
+ - `//` begins a comment
  - `.` (period) means lookup or access a map key (field)
  - `:=` means assign RHS to LHS
  - `==` and `!=` are equality comparisons
@@ -220,25 +243,32 @@ end app_sid_to_syntax_uid
 
 ## Example with EditorConfig
 
-For a new EditorConfig application plugin, copy `template-app_map.yaml` to
-`app_maps/program_name.yaml` , and update each `syntax_uid_to` entry as follows:
- - comment out each line not supported by your program, using "`#`" (sharp/hash sign)
- - edit the string after "`map: `" to match your program's name for that `syntax_uid` seen near
-   the start of the line; be sure to keep a space character after the "`:`" (colon) as well as
-   keep the trailing "`}`" (closing brace).
+THIS IS A PROPOSAL/ proof of concept only, it is NOT yet implemented.
+
+For a new EditorConfig $EDITOR syntax uid map, copy `app_maps/vim.yaml` to
+`app_maps/${EDITOR}.yaml` , and update each `syntax_uid_to` entry as follows:
+
+ - comment out each line not supported by your EDITOR, using "`#`" (sharp/hash sign)
+
+ - edit the string after "`map: `" to match your EDITOR's name for that `syntax_uid` (the name
+   near the start of the line); be sure to keep a space character after the "`:`" (colon) as well
+   as keep the trailing "`}`" (closing brace).
 
 Next implement the above lookup protocol functions, `str_to_syntax_uid(STR)`,
 `str_to_app_sid(STR)` and `app_sid_to_syntax_uid(SID)`, in your plugin
 (if they are not already available in your editor).
 
-Voi la, the application's syntax id and the corresponding lang-list `syntax_uid` (e.g. `java`)
-can now be used to lookup editorconfig language-specific settings, e.g. in an editorconfig group
-named say "`[: syntax_uid=java]`";
+Voi la, your EDITOR's Syntax ID ("file format" or "filetype"), and lang-list's `syntax_uid`,
+can now each be used to lookup editorconfig language-specific settings, e.g. in an editorconfig
+group named say "`[: syntax_uid=java]`";
 
-and similarly the corollary, an editorconfig file-group setting for `syntax` can ensure the
-correct syntax highlighting in your editor.
+and the corollary, an editorconfig file-group setting for `syntax` can ensure the correct syntax
+highlighting for those files in your editor.
 
-Example:
+### Example:
+
+NOTE: THIS IS A PROPOSAL/ proof of concept only, it is NOT yet implemented.
+
 ```ini
 [src/sh/*]
 syntax = sh
@@ -248,9 +278,13 @@ indent_size = 8
 syntax = bash
 indent_size = 4
 
-# use this if you are happy with editor auto detection for Java-syntax files:
-[: syntax_uid=java]
+# use this if you are happy with your EDITOR's auto detection for Java-syntax files:
+[: syntax_uid=java]  # exact .editorconfig "group syntax" TBD
 indent_size = 3
+
+# and if your editor does not properly auto detect Java-syntax files, add this:
+[src/java/*]
+syntax_uid = java
 ```
 
 Note: The `syntax_uid.yaml` file is not normally loaded by editorconfig plugins, only the
@@ -259,6 +293,8 @@ Note: The `syntax_uid.yaml` file is not normally loaded by editorconfig plugins,
 
 
 ## Jobs - `app_maps/${MY_EDITOR}.yaml` - `l10n/${LANG}/syntax_uids.yaml`
+
+NOTE: THIS IS A PROPOSAL/ proof of concept only, it is NOT yet implemented.
 
 To apply the lang-list to another editor, copy `app_maps/vim.yaml` to
 `app_maps/${MY_EDITOR}.yaml` and update each `map:` value to the corresponding syntax ID for
