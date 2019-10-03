@@ -148,8 +148,11 @@ In the protocols (as pseudo code functions) below:
 
 
 ### `str_to_syntax_uid(STR)  # Convert STRing to syntax_uid`
+<!-- NOTE: the following protocol functions are not actual dylan code, that's just a convenient
+     GitHub markdown syntax. -->
+
 ```dylan
-str_to_syntax_uid(STR) {
+define function str_to_syntax_uid (STR :: <string>)
 	// Convert STRing to syntax_uid
 
 	syntax_uid := syntax_uids . uids . $STR
@@ -157,7 +160,7 @@ str_to_syntax_uid(STR) {
 	then
 		error("syntax_uid '$STR' does not exist")
 		return NULL
-	endif
+	end if
 
 	suid_primary := syntax_uid . alias_of
 	if suid_primary == NULL
@@ -167,37 +170,37 @@ str_to_syntax_uid(STR) {
 		if syntax_uid . deprecated == "true"
 		then
 			warn("syntax_uid '$STR' is deprecated and will be removed, use '$suid_primary' instead")
-		endif
+		end if
 		return $suid_primary
-	endif
-}
+	end if
+end str_to_syntax_uid
 ```
 
 ### `str_to_app_sid(STR)  # Convert STRing to app syntax id`
 ```dylan
-str_to_app_sid(STR) {
+define function str_to_app_sid (STR :: <string>)
 	// Convert STRing to app syntax id
 
 	syntax_uid := str_to_syntax_uid($STR)
 	if syntax_uid == NULL
 	then
 		return NULL
-	endif
+	end if
 
 	app_sid := app_map . syntax_uid_to . $syntax_uid
 	if app_sid == NULL
 	then
 		error("$APP does not support syntax_uid '$STR'")
 		return NULL
-	endif
+	end if
 
 	return app_sid . map
-}
+end str_to_app_sid
 ```
 
 ### `app_sid_to_syntax_uid(SID)  # Convert app_SID to syntax_uid`
 ```dylan
-app_sid_to_syntax_uid(SID)
+define function app_sid_to_syntax_uid (SID :: <string>)
 	// Convert app Syntax ID to syntax_uid
 
 	app_suids = app_map . syntax_uid_to
@@ -205,12 +208,12 @@ app_sid_to_syntax_uid(SID)
 		if syntax_uid . map == $SID
 		then
 			return $syntax_uid
-		endif
-	done
+		end if
+	end foreach
 
 	error("$APP syntax id '$SID' not found in syntax_uid map")
 	return NULL
-}
+end app_sid_to_syntax_uid
 ```
 
 
