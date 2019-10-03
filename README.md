@@ -89,7 +89,7 @@ The lang-list data structures are as follows:
    i.e. `YYYYMMDD`
 1. `uids`: _map_, keyed by `$syntax_uid`
 
-**B.** **`$syntax_uid`** (`syntax_uids . uids . $syntax_uid`): _map_, keyed by field name:
+**B.** **`syntax_uid`** (`syntax_uids . uids . $syntax_uid`): _map_, keyed by field name:
 1. `unknown`: _boolean_, optional, `true` if this uid is not (yet) properly identified,
    `false` otherwise or if not present
 1. `alias_of`: _string_, optional, MUST be non-empty if present; if present,
@@ -97,7 +97,7 @@ The lang-list data structures are as follows:
 1. `deprecated`: _boolean_, optional, `true` if this `syntax_uid` is deprecated,
    `false` otherwise or if not present;
    `deprecated` MUST only be present if `alias_of` is also present
-1. `family`: _list_ of _string_, optional,
+1. `family`: _list_ of _string_ (each a `syntax_uid`), optional,
    if present the value is the list of `syntax_uid`s of which this syntax is associated
 1. **`name`**: _map_ keyed by [IETF BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag)
    (a _string_ identified herein as `$LANG`),
@@ -114,8 +114,8 @@ The lang-list data structures are as follows:
 
 **C.** **`app_map`** (`app_maps/${APPNAME}.yaml`): _map_, keyed by field name:
 1. `protocol`: _integer_, currently `0`, only increase if necessary
-1. `version`: _integer_, initially `0`,
-   monotonically increasing with each public release of this specific `app_map`
+1. `version`: _integer_, initially `0`, identifies this specific application "syntax uid map",
+   monotonically increasing with each public release
 1. `released`: _integer_, public release date of this version, in "ISO format, no punctuation"
    i.e. `YYYYMMDD`
 1. `syntax_uid_to`: _map_, keyed by `$syntax_uid`
@@ -154,7 +154,7 @@ an EDITOR plugin will need to do something like the following:
 **3.b.ii.** given $EDITOR's syntax `$SID`, use the lang-list
   `app_map/$EDITOR.yaml` map to reverse-lookup the corresponding `syntax_uid`
 
-**4.** Finally, given the `$syntax_uid` for this file, lookup the
+**4.** Finally, given the `syntax_uid` for this file, lookup the
   .editorconfig settings for this `$syntax_uid`
 
 
@@ -196,6 +196,7 @@ define function str_to_syntax_uid (STR :: <string>)
 		end if
 		return $suid_primary
 	end if
+
 end str_to_syntax_uid
 ```
 
@@ -218,6 +219,7 @@ define function str_to_app_sid (STR :: <string>)
 	end if
 
 	return app_sid . map
+
 end str_to_app_sid
 ```
 
@@ -236,6 +238,7 @@ define function app_sid_to_syntax_uid (SID :: <string>)
 
 	error("$APP syntax id '$SID' not found in syntax_uid map")
 	return NULL
+
 end app_sid_to_syntax_uid
 ```
 
