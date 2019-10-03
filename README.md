@@ -142,51 +142,74 @@ In the protocols (as pseudo code functions) below:
  - `==` and `!=` are equality comparisons
  - `""` means the empty string
  - `$` means dereference or "get the value stored in this variable"
- - `NULL` means a non-existent map or field
+ - `NULL` means a non-existent map, field or value
  - The error() function MUST show an error where errors are normally shown.
  - The warn() function MUST show a warning where warnings are normally shown.
 
 
 ### `str_to_syntax_uid(STR)  # Convert STRing to syntax_uid`
-```modula-2
+```dylan
 str_to_syntax_uid(STR) {
-	# Convert STRing to syntax_uid:
+	// Convert STRing to syntax_uid
 
-	syntax_uid := syntax_uids . uids . $STR . alias_of
-	if syntax_uid != ""
-	then
-		if syntax_uids . uids . $STR . deprecated == "true"
-		then
-			warn("syntax_uid '$syntax_uid' is deprecated and will be removed, use '$syntax_uid' instead")
-		endif
-	else
-		syntax_uid := $STR
-	endif
-	if syntax_uids . uids . $syntax_uid == NULL
+	syntax_uid := syntax_uids . uids . $STR
+	if syntax_uid == NULL
 	then
 		error("syntax_uid '$STR' does not exist")
+		return NULL
+	endif
+
+	suid_primary := syntax_uid . alias_of
+	if suid_primary == NULL
+	then
+		return $STR
+	else
+		if syntax_uid . deprecated == "true"
+		then
+			warn("syntax_uid '$STR' is deprecated and will be removed, use '$suid_primary' instead")
+		endif
+		return $suid_primary
 	endif
 }
 ```
 
 ### `str_to_app_sid(STR)  # Convert STRing to app syntax id`
-```modula-3
+```dylan
 str_to_app_sid(STR) {
-	# Convert STRing to app syntax id
+	// Convert STRing to app syntax id
 
 	syntax_uid := str_to_syntax_uid($STR)
-	app_sid := app_map . syntax_uid_to . $syntax_uid . map
-	if app_sid == "" then warn("$APP does not support the syntax_uid '$syntax_uid'")
+	if syntax_uid == NULL
+	then
+		return NULL
+	endif
+
+	app_sid := app_map . syntax_uid_to . $syntax_uid
+	if app_sid == NULL
+	then
+		error("$APP does not support syntax_uid '$STR'")
+		return NULL
+	endif
+
+	return app_sid . map
 }
 ```
 
 ### `app_sid_to_syntax_uid(SID)  # Convert app_SID to syntax_uid`
-```pascal
+```dylan
 app_sid_to_syntax_uid(SID)
-	# Convert app syntax id to syntax_uid
+	// Convert app Syntax ID to syntax_uid
 
-	syntax_uid := app_map . syntax_uid_to . first_key_for_value($syntax_uid)
-	if syntax_uid == "" then error("$APP syntax id '$SID' does not have a lang-list syntax_uid")
+	app_suids = app_map . syntax_uid_to
+	foreach syntax_uid in app_suids do
+		if syntax_uid . map == $SID
+		then
+			return $syntax_uid
+		endif
+	done
+
+	error("$APP syntax id '$SID' not found in syntax_uid map")
+	return NULL
 }
 ```
 
