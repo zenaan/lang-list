@@ -29,7 +29,19 @@ Syntax categories include:
 
 
 ### Contents
-[Background](#user-content-background)
+ - [Background](#user-content-background)
+ - [Data structure](#user-content-data-structure)
+ - [Lookup protocol functions](#user-content-lookup-protocol-functions)
+   - [str_to_syntax_uid(STR)](#user-content-str_to_syntax_uidstr)
+   - [str_to_app_sid(STR)](#user-content-str_to_app_sidstr)
+   - [app_sid_to_syntax_uid(SID)](#user-content-app_sid_to_syntax_uidsid)
+ - [Example with EditorConfig](#user-content-example-with-editorconfig)
+ - [Jobs](#user-content-jobs)
+ - [Indentation](#user-content-indentation)
+ - [Localisation](#user-content-localisation)
+ - [Feature requests and support](#user-content-feature-requests-and-support)
+ - [License](#user-content-license)
+ - [See also](#user-content-see-also)
 
 
 ## Background
@@ -74,7 +86,7 @@ relatively stable, broadly applicable, and easy to maintain and translate.
 
 
 
-## lang-list Data Structure
+## Data Structure
 
 Syntax uids primary store is in the file `syntax_uids.yaml`, a [YAML](https://yaml.org/) file.
 
@@ -173,7 +185,7 @@ In the protocol pseudo code functions below:
  - The warn() function MUST show a warning where warnings are normally shown.
 
 
-### `str_to_syntax_uid(STR)  # Convert STRing to syntax_uid`
+### `str_to_syntax_uid(STR)`
 <!-- NOTE: the following protocol functions are not actual dylan code, that's just a convenient
      GitHub markdown syntax. -->
 
@@ -203,7 +215,7 @@ define function str_to_syntax_uid (STR :: <string>)
 end str_to_syntax_uid
 ```
 
-### `str_to_app_sid(STR)  # Convert STRing to app syntax id`
+### `str_to_app_sid(STR)`
 ```dylan
 define function str_to_app_sid (STR :: <string>)
 	// Convert STRing to app syntax id
@@ -226,7 +238,7 @@ define function str_to_app_sid (STR :: <string>)
 end str_to_app_sid
 ```
 
-### `app_sid_to_syntax_uid(SID)  # Convert app_SID to syntax_uid`
+### `app_sid_to_syntax_uid(SID)`
 ```dylan
 define function app_sid_to_syntax_uid (SID :: <string>)
 	// Convert app Syntax ID to syntax_uid
