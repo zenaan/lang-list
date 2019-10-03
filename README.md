@@ -90,37 +90,41 @@ The lang-list data structures are as follows:
 1. `uids`: _map_, keyed by `$syntax_uid`
 
 **B.** **`$syntax_uid`** (`syntax_uids . uids . $syntax_uid`): _map_, keyed by field name:
-1. `unknown`: _boolean_, optional, `true` if this uid is not (yet) properly identified, `false`
-   otherwise or if not present
-1. `alias_of`: _string_, optional, MUST be non-empty if present; if present, this field's value
-   is the `syntax_uid` and its key is an alias of that uid
-1. `deprecated`: _boolean_, optional, `true` if this `syntax_uid` is deprecated, `false`
-   otherwise or if not present; `deprecated` MUST only be present if `alias_of` is also present
-1. `family`: _list_ of _string_, optional, if present the value is the `syntax_uid` of the
-   "syntax family" with which this `syntax_uid` is associated
+1. `unknown`: _boolean_, optional, `true` if this uid is not (yet) properly identified,
+   `false` otherwise or if not present
+1. `alias_of`: _string_, optional, MUST be non-empty if present; if present,
+   this field's value is the `syntax_uid` and its key is an alias of that uid
+1. `deprecated`: _boolean_, optional, `true` if this `syntax_uid` is deprecated,
+   `false` otherwise or if not present;
+   `deprecated` MUST only be present if `alias_of` is also present
+1. `family`: _list_ of _string_, optional,
+   if present the value is the list of `syntax_uid`s of which this syntax is associated
 1. **`name`**: _map_ keyed by [IETF BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag)
-   (a _string_ identified herein as `$LANG`), with a minimum inclusion of "`{name: {en: "English
-   syntax name"}}`", include _only_ the LANG **`en`** in the root `syntax_uids.yaml` file,
-   `name` is optional in the case of an alias or unknown `syntax_uid`, **mandatory** otherwise
-1. `supercedes`: `list` of  _string_, optional, list of obsolete `syntax_uid` syntaxes
-   superceded by this `syntax_uid`
-1. `influenced_by`: `list` of _string_, optional, a list of `syntax_uid` identifying languages
-   which influenced this language
-1. `obsolete`: _boolean_, optional, `true` if this syntax is "obsolete", `false` otherwise or if
-   not present
+   (a _string_ identified herein as `$LANG`),
+   with a minimum inclusion of "`{name: {en: "${English_syntax_name}"}}`",
+   include _only_ the LANG **`en`** in the root `syntax_uids.yaml` file,
+   `name` is optional in the case of an alias or unknown `syntax_uid`,
+   **mandatory** otherwise
+1. `supercedes`: _list_ of _string_ (each a `syntax_uid`), optional,
+   syntaxes superceded by this syntax
+1. `influenced_by`: _list_ of _string_ (each a `syntax_uid`), optional,
+   languages which influenced this language
+1. `obsolete`: _boolean_, optional, `true` if this syntax is "obsolete",
+   `false` otherwise or if not present
 
 **C.** **`app_map`** (`app_maps/${APPNAME}.yaml`): _map_, keyed by field name:
 1. `protocol`: _integer_, currently `0`, only increase if necessary
-1. `version`: _integer_, initially `0`, monotonically increasing with each public release of
-   this specific app_map
+1. `version`: _integer_, initially `0`,
+   monotonically increasing with each public release of this specific `app_map`
 1. `released`: _integer_, public release date of this version, in "ISO format, no punctuation"
    i.e. `YYYYMMDD`
 1. `syntax_uid_to`: _map_, keyed by `$syntax_uid`
 
 **D.** **`syntax_uid`** (`app_map . syntax_uid_to . $syntax_uid`): _map_, keyed by field name:
 1. `map`: _string_, mandatory, the application's syntax name corresponding to this `syntax_uid`
-1. `run`: list of _string_, optional, list of commands and/ or settings to apply, in combination
-   with the `map` value, in order to cause `syntax_uid` to apply
+1. `run`: _list_ of _string_, optional, a list of commands and/ or settings to apply,
+   in combination with the `map` value,
+   in order to cause `syntax_uid` to apply
 
 
 
@@ -135,7 +139,7 @@ Protocols for using `syntax_uid` are necessary to provide for:
 In the protocols (as pseudo code functions) below:
  - `.` (period) means lookup or access a map key (field)
  - `:=` means assign RHS to LHS
- - `==` and `!=` are equality comparison
+ - `==` and `!=` are equality comparisons
  - `""` means the empty string
  - `$` means dereference or "get the value stored in this variable"
  - `NULL` means a non-existent map or field
@@ -144,7 +148,7 @@ In the protocols (as pseudo code functions) below:
 
 
 ### `str_to_syntax_uid(STR)  # Convert STRing to syntax_uid`
-```
+```modula-2
 str_to_syntax_uid(STR) {
 	# Convert STRing to syntax_uid:
 
@@ -166,7 +170,7 @@ str_to_syntax_uid(STR) {
 ```
 
 ### `str_to_app_sid(STR)  # Convert STRing to app syntax id`
-```
+```modula-3
 str_to_app_sid(STR) {
 	# Convert STRing to app syntax id
 
@@ -177,7 +181,7 @@ str_to_app_sid(STR) {
 ```
 
 ### `app_sid_to_syntax_uid(SID)  # Convert app_SID to syntax_uid`
-```
+```pascal
 app_sid_to_syntax_uid(SID)
 	# Convert app syntax id to syntax_uid
 
@@ -319,6 +323,8 @@ software license.
 See also:
 
  - https://github.com/editorconfig/editorconfig/wiki/%5BDevelopment%5D-Discussion-of-language-filetype-support
+ - https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
+ - https://github.com/github/linguist.git
  - https://en.wikipedia.org/wiki/List_of_programming_languages
  - https://en.wikipedia.org/wiki/Markup_language
  - https://en.wikipedia.org/wiki/List_of_markup_languages

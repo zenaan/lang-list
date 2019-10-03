@@ -150,6 +150,7 @@ uids:
 # Each syntax_uid key in the below sections identifies a UID for a computer language syntax.
 
 # 0-9                   ________________________________________________________________________
+   1c_enterprise:       {name: {en: "1C Enterprise"}}
    3d_obj:              {name: {en: "3D Wavefront obj"}}
    3d_3dmlw:            {name: {en: "3d - 3DMLW Scene Description Language"}}
    3d_sdl:              {name: {en: "Specification and Description Language, ITU-T Z.100-106"}}
