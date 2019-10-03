@@ -73,7 +73,7 @@ Boolean values may be `true` or `false` only.
 
 The lang-list data structures are as follows:
 
- 1. **`syntax_uids`** (`syntax_uids.yaml`): _map_, keyed by field name:
+1. **`syntax_uids`** (`syntax_uids.yaml`): _map_, keyed by field name:
 
    1. `protocol`: _integer_, currently `0`, monotonically increasing if necessary
 
@@ -85,7 +85,7 @@ The lang-list data structures are as follows:
    1. `uids`: _map_, keyed by `$syntax_uid`
 
 
- 2. **`$syntax_uid`** (`syntax_uids . uids . $syntax_uid`): _map_, keyed by field name:
+2. **`$syntax_uid`** (`syntax_uids . uids . $syntax_uid`): _map_, keyed by field name:
 
    1. `unknown`: _boolean_, optional, `true` if this uid is not (yet) properly identified,
       `false` otherwise or if not present
@@ -97,8 +97,8 @@ The lang-list data structures are as follows:
       `false` otherwise or if not present;
       `deprecated` MUST only be present if `alias_of` is also present
 
-   1. `family`: _string_, optional, if present, the value is the `syntax_uid` of the "syntax
-      family" with which this `syntax_uid` is associated
+   1. `family`: _list_ of _string_, optional, if present the value is the `syntax_uid` of the
+      "syntax family" with which this `syntax_uid` is associated
 
    1. **`name`**: _map_ keyed by [IETF BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag)
       (a _string_ identified herein as `$LANG`), with a minimum inclusion of
@@ -116,7 +116,7 @@ The lang-list data structures are as follows:
       `false` otherwise or if not present
 
 
- 3. **`app_map`** (`app_maps/${APPNAME}.yaml`): _map_, keyed by field name:
+3. **`app_map`** (`app_maps/${APPNAME}.yaml`): _map_, keyed by field name:
 
    1. `protocol`: _integer_, currently `0`, only increase if necessary
 
@@ -128,7 +128,7 @@ The lang-list data structures are as follows:
    1. `syntax_uid_to`: _map_, keyed by `$syntax_uid`
 
 
- 4. **`syntax_uid`** (`app_map . syntax_uid_to . $syntax_uid`): _map_, keyed by field name:
+4. **`syntax_uid`** (`app_map . syntax_uid_to . $syntax_uid`): _map_, keyed by field name:
 
    1. `map`: _string_, mandatory, the application's syntax name corresponding to this
       `syntax_uid`
