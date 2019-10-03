@@ -54,8 +54,8 @@ combination of the following or other file type identification systems:
  - operating system specific type-codes
  - operating system- and filesystem-specific extended attributes
 
-The [editorconfig](http://editorconfig.org/) project, in particular editorconfig#190 and
-editorconfig#404, inspired the `lang-list`.
+The [editorconfig](http://editorconfig.org/) project, in particular
+editorconfig/editorconfig#190 and editorconfig/editorconfig#404, inspired the `lang-list`.
 
 The initial creation has been some rather tedious effort - from here the list should be
 relatively stable, broadly applicable, and easy to maintain and translate.
@@ -73,37 +73,38 @@ Boolean values may be `true` or `false` only.
 
 The lang-list data structures are as follows:
 
- - **`syntax_uids`** (`syntax_uids.yaml`): _map_, keyed by field name:
+ 1. **`syntax_uids`** (`syntax_uids.yaml`): _map_, keyed by field name:
 
    1. `protocol`: _integer_, currently `0`, monotonically increasing if necessary
 
    1. `version`: _integer_, initially `0`, monotonically increasing with each public release
 
-   1. `released`: _integer_, release date in "ISO format, no punctuation" i.e. `YYYYMMDD`
+   1. `released`: _integer_, public release date of this version, in "ISO format, no
+      punctuation" i.e. `YYYYMMDD`
 
    1. `uids`: _map_, keyed by `$syntax_uid`
 
 
- - **`$syntax_uid`** (`uids` key): _map_, keyed by field name:
+ 2. **`$syntax_uid`** (`syntax_uids . uids . $syntax_uid`): _map_, keyed by field name:
 
    1. `unknown`: _boolean_, optional, `true` if this uid is not (yet) properly identified,
       `false` otherwise or if not present
 
-   1. `alias_of`: _string_, optional, MUST be non-empty if present; and the value of the
-	  field is the `syntax_uid`, the key is an alias of that uid
+   1. `alias_of`: _string_, optional, MUST be non-empty if present;
+      if present, this field's value is the `syntax_uid` and its key is an alias of that uid
 
    1. `deprecated`: _boolean_, optional, `true` if this `syntax_uid` is deprecated,
       `false` otherwise or if not present;
-	  `deprecated` MUST only be present if `alias_of` is also present
+      `deprecated` MUST only be present if `alias_of` is also present
 
    1. `family`: _string_, optional, if present, the value is the `syntax_uid` of the "syntax
       family" with which this `syntax_uid` is associated
 
    1. **`name`**: _map_ keyed by [IETF BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag)
-	  (a _string_ identified herein as `$LANG`), with a minimum inclusion of
-	  "`{name: {en: "English syntax name"}}`",
-	  including _only_ the LANG `en` in the root `syntax_uids.yaml` file,
-	  `name` is optional in the case of an alias or unknown `syntax_uid`, **mandatory** otherwise
+      (a _string_ identified herein as `$LANG`), with a minimum inclusion of
+      "`{name: {en: "English syntax name"}}`",
+      include _only_ the LANG **`en`** in the root `syntax_uids.yaml` file,
+      `name` is optional in the case of an alias or unknown `syntax_uid`, **mandatory** otherwise
 
    1. `supercedes`: `list` of  _string_, optional, list of obsolete `syntax_uid` syntaxes
       superceded by this `syntax_uid`
@@ -115,19 +116,19 @@ The lang-list data structures are as follows:
       `false` otherwise or if not present
 
 
- - **`app_map`** (`app_maps/${APPNAME}.yaml`): _map_, keyed by field name:
+ 3. **`app_map`** (`app_maps/${APPNAME}.yaml`): _map_, keyed by field name:
 
    1. `protocol`: _integer_, currently `0`, only increase if necessary
 
    1. `version`: _integer_, initially `0`, monotonically increasing with each public release of
       this specific app_map
 
-   1. `released`: _integer_, release date in "ISO format, no punctuation" i.e. `YYYYMMDD`
+   1. `released`: _integer_, public release date of this version, in "ISO format, no punctuation" i.e. `YYYYMMDD`
 
    1. `syntax_uid_to`: _map_, keyed by `$syntax_uid`
 
 
- - **`syntax_uid`** (`syntax_uid_to` key): _map_, keyed by field name:
+ 4. **`syntax_uid`** (`app_map . syntax_uid_to . $syntax_uid`): _map_, keyed by field name:
 
    1. `map`: _string_, mandatory, the application's syntax name corresponding to this
       `syntax_uid`
@@ -220,17 +221,17 @@ correct syntax highlighting in your editor.
 
 Example:
 ```ini
-	[src/sh/*]
-	syntax = sh
-	indent_size = 8
+[src/sh/*]
+syntax = sh
+indent_size = 8
 
-	[src/bash/*]
-	syntax = bash
-	indent_size = 4
+[src/bash/*]
+syntax = bash
+indent_size = 4
 
-	# use this if you are happy with editor auto detection for Java-syntax files:
-	[: syntax_uid=java]
-	indent_size = 3
+# use this if you are happy with editor auto detection for Java-syntax files:
+[: syntax_uid=java]
+indent_size = 3
 ```
 
 Note: The `syntax_uid.yaml` file is not normally loaded by editorconfig plugins, only the
@@ -289,8 +290,7 @@ Each localization file must have the same structure as `languages.yaml` but less
 particular the file contains the following YAML mapping keys:
 
  - `protocol: 0` - _integer_, mandatory
- - `version: 0` - _integer_, mandatory, where the version number starts at `0` and is the version for this
-   localisation file
+ - `version: 0` - _integer_, mandatory, starts at `0`, is the version for this localisation file
  - `name: {$LANG: "..."}` - _string_, optional, translation of "computer language syntax UID"
  - `uids:` - _map_, mandatory, keyed by `$syntax_uid`
  - Do NOT include the alias and unknown groups (the first two syntax uid groups).
@@ -336,4 +336,7 @@ See also:
  - https://en.wikipedia.org/wiki/Configuration_file
  - https://medium.com/web-development-zone/a-complete-list-of-computer-programming-languages-1d8bc5a891f
  - https://github.com/garabik/grc
+
+ - https://userstyles.org/?utm_campaign=stylish_homepage
+ - https://userstyles.org/styles/70979/github-better-sized-tabs-in-code
 

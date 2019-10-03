@@ -40,7 +40,7 @@
 
 
 protocol: 0
-version: 0
+version: 1
 released: 20191003
 syntax_uid_to:
 
@@ -71,6 +71,12 @@ syntax_uid_to:
 # syntax_uid            ________________________________________________________
 
    3d_obj:              {map: obj}
+   3d_3dmlw:            {map: 3d_3dmlw}
+   3d_sdl:              {map: sdl}
+   3d_povray:           {map: pov}
+   3d_povconf:          {map: povini}
+   #3d_tao:              {map: 3d_tao}
+   #3d_x3d:              {map: 3d_x3d}
    4dos_batch:          {map: btm}
 
    a2ps_conf:           {map: a2ps}
@@ -229,8 +235,8 @@ syntax_uid_to:
    eda_dracula:         {map: dracula}
    eda_haste:           {map: haste}
    eda_haste_pre:       {map: hastepreproc}
-   eda_magma:           {map: icd_magma} # does not exist in Vim
-   eda_mentor:          {map: icd_mentor} # does not exist in Vim
+   #eda_magma:           {map: icd_magma} # does not exist in Vim
+   #eda_mentor:          {map: icd_mentor} # does not exist in Vim
    eda_sdc:             {map: sdc}
    eda_skill:           {map: skill}
    eda_specman:         {map: specman}
@@ -419,7 +425,7 @@ syntax_uid_to:
    moo:                 {map: moo}
    motif_uil:           {map: uil}
    mplayer_conf:        {map: mplayerconf}
-   ms_doc:              {map: ms_doc}  # does not exist in Vim
+   #ms_doc:              {map: ms_doc}  # does not exist in Vim
    ms_dot:              {map: dot}
    ms_messages:         {map: msmessages}
    ms_wsh:              {map: wsh}
@@ -476,8 +482,6 @@ syntax_uid_to:
    pod:                 {map: pod}
    postfix_aliases:     {map: mailaliases}
    postfix_conf:        {map: pfmain}
-   pov:                 {map: pov}
-   pov_conf:            {map: povini}
    ppd:                 {map: ppd}
    ppwiz:               {map: ppwiz}
    prescribe2e:         {map: prescribe2e}
@@ -546,11 +550,6 @@ syntax_uid_to:
    scheme_chicken:      {map: chicken}
    scilab:              {map: scilab}
    screen_conf:         {map: screen}
-   sdl_3dmlw:           {map: sdl_3dmlw}
-   sdl_itut:            {map: sdl}
-   sdl_povray:          {map: sdl_povray}
-   sdl_tao:             {map: sdl_tao}
-   sdl_x3d:             {map: sdl_x3d}
    sdml:                {map: sdml}
    sed:                 {map: sed}
    seebeyond_monk:      {map: monk}

@@ -88,7 +88,7 @@
 
 name: {en: "computer language syntax UID"}
 protocol: 0
-version: 0
+version: 1
 released: 20191003
 uids:
 
@@ -114,6 +114,7 @@ uids:
    readline:            {alias_of: readline_conf}
    verilog:             {alias_of: eda_verilog}
    webmacro:            {alias_of: java_webmacro}
+   x3d:                 {alias_of: 3d_x3d}
 
 
 # unknown/ info rot     ________________________________________________________________________
@@ -135,7 +136,7 @@ uids:
    # use another where possible.
 
    obs_ac_openroad:     {obsolete: true, name: {en: "Actian Corporation OpenROAD"}}
-   obs_basic_ibasic:    {obsolete: true, name: {en: "IBASIC"}, family: basic}
+   obs_basic_ibasic:    {obsolete: true, name: {en: "IBASIC"}, family: [basic]}
    obs_eiffel_lace:     {obsolete: true, name: {en: "Interactive Software Engineering EiffelStudio 5.6 Lace"}}
    obs_intel_plm:       {obsolete: true, name: {en: "Intel PL/M"}}
    obs_latte_blatte:    {obsolete: true, name: {en: "Latte Blatte"}}
@@ -143,14 +144,20 @@ uids:
    obs_modsim_iii:      {obsolete: true, name: {en: "Compuware Modsim III discrete systems simulation"}}
    obs_smith_calc:      {obsolete: true, name: {en: "SMITH (circa 2000 see vim../syntax/smith.vim"}}
    obs_teal_tealinfo:   {obsolete: true, name: {en: "Teal info"}}
-   obs_vrml:            {obsolete: true, superceded_by: x3d, name: {en: "Virtual Reality Modeling Language"}}
+   obs_vrml:            {obsolete: true, name: {en: "Virtual Reality Modeling Language"}}
 
 
 # Each syntax_uid key in the below sections identifies a UID for a computer language syntax.
 
 # 0-9                   ________________________________________________________________________
    3d_obj:              {name: {en: "3D Wavefront obj"}}
-   4dos_batch:          {name: {en: "4Dos Batch"}, family: dos}
+   3d_3dmlw:            {name: {en: "3d - 3DMLW Scene Description Language"}}
+   3d_sdl:              {name: {en: "Specification and Description Language, ITU-T Z.100-106"}}
+   3d_povray:           {name: {en: "PoV-Ray Scene Description Language"}}
+   3d_povconf:          {name: {en: "PoV-Ray conf"}}
+   3d_tao:              {name: {en: "Tao Scene Description Language"}}
+   3d_x3d:              {name: {en: "X3D Scene Description Language"}, supercedes: [obs_vrml]}
+   4dos_batch:          {name: {en: "4Dos Batch"}, family: [dos]}
 
 # A                     ________________________________________________________________________
    a_0:                 {name: {en: "A-0 System"}}
@@ -187,7 +194,7 @@ uids:
    antlr:               {name: {en: "ANTLR, Another Tool For Language Recognition"}}
    aoi_ampl:            {name: {en: "AMPL Optimization, Inc. AMPL"}}
    ap:                  {name: {en: "A+"}}
-   apache_velocity:     {name: {en: "Apache Velocity"}, family: java_webmacro}
+   apache_velocity:     {name: {en: "Apache Velocity"}, family: [java_webmacro]}
    app:                 {name: {en: "A++"}}
    applix_elf:          {name: {en: "Applix Extension Language Facility"}}
    apt_conf:            {name: {en: "APT conf"}}
@@ -225,20 +232,20 @@ uids:
 
 # B                     ________________________________________________________________________
    b:                   {name: {en: "B-Method"}}
-   bash:                {name: {en: "Bash Shell"}, family: sh}
+   bash:                {name: {en: "Bash Shell"}, family: [sh]}
    basic:               {name: {en: "BASIC"}}
-   basic_autoit:        {name: {en: "AutoIt BASIC script"}, family: basic}
-   basic_baan:          {name: {en: "Baan BASIC"}, family: basic}
-   basic_fb:            {name: {en: "FreeBasic"}, family: basic}
-   basic_vb:            {name: {en: "Visual Basic"}, family: basic}
+   basic_autoit:        {name: {en: "AutoIt BASIC script"}, family: [basic]}
+   basic_baan:          {name: {en: "Baan BASIC"}, family: [basic]}
+   basic_fb:            {name: {en: "FreeBasic"}, family: [basic]}
+   basic_vb:            {name: {en: "Visual Basic"}, family: [basic]}
    bazel:               {name: {en: "Bazel build test"}}
    bc:                  {name: {en: "GNU bc(1) arbitrary precision calculator"}}
    bdf:                 {name: {en: "BDF font definition"}}
-   bibtex:              {name: {en: "BibTeX, (La)TeX bibliographic database"}, family: tex}
-   bibtex_style:        {name: {en: "BibTeX Bibliography Style"}, family: tex}
+   bibtex:              {name: {en: "BibTeX, (La)TeX bibliographic database"}, family: [tex]}
+   bibtex_style:        {name: {en: "BibTeX Bibliography Style"}, family: [tex]}
    bind_conf:           {name: {en: "Bind conf"}}
    bind_zone:           {name: {en: "Bind zone conf"}}
-   bsh:                 {name: {en: "Bourne Shell"}, family: sh}
+   bsh:                 {name: {en: "Bourne Shell"}, family: [sh]}
    bzr:                 {name: {en: "Bazaar bzr commit"}}
 
 # C                     ________________________________________________________________________
@@ -250,10 +257,10 @@ uids:
    cdrdao_toc:          {name: {en: "cdrdao(1) TOC"}}
    cfml:                {name: {en: "ColdFusion Markup Language"}}
    cfg:                 {name: {en: "cfg conf"}}
-   ch:                  {name: {en: "Ch C/C++ interpreter"}, family: c}
+   ch:                  {name: {en: "Ch C/C++ interpreter"}, family: [c]}
    chaiscript:          {name: {en: "ChaiScript"}}
    changelog:           {name: {en: "ChangeLog"}}
-   changelog_deb:       {name: {en: "Debian ChangeLog"}, family: changelog}
+   changelog_deb:       {name: {en: "Debian ChangeLog"}, family: [changelog]}
    cheetah:             {name: {en: "Cheetah template"}}
    chem_speedup:        {name: {en: "AspenTech SPEEDUP chemical simulator"}}
    chill:               {name: {en: "CHILL CCITT High Level Language"}}
@@ -269,7 +276,7 @@ uids:
    conary_recipe:       {name: {en: "Conary Recipe"}}
    conf:                {name: {en: "conf"}}
    configure_in:        {name: {en: "configure.in - M4 + sh"}}
-   context:             {name: {en: "ConTeXt typesetting"}, family: tex}
+   context:             {name: {en: "ConTeXt typesetting"}, family: [tex]}
    cpp:                 {name: {en: "C++"}}
    crm_114:             {name: {en: "CRM114 Discriminator"}}
    crontab:             {name: {en: "crontab"}}
@@ -293,13 +300,13 @@ uids:
    d:                   {name: {en: "D"}}
    dm_abc:              {name: {en: "digital media - ABC music notation"}}
    dm_chuck:            {name: {en: "digital media - ChucK"}}
-   dm_cmixrt:           {name: {en: "digital media - Real-time Cmix"}, family: dm_musicn}
+   dm_cmixrt:           {name: {en: "digital media - Real-time Cmix"}, family: [dm_musicn]}
    dm_clm:              {name: {en: "digital media - Common Lisp Music"}}
-   dm_csound:           {name: {en: "digital media - Csound"}, family: dm_musicn}
+   dm_csound:           {name: {en: "digital media - Csound"}, family: [dm_musicn]}
    dm_extempore:        {name: {en: "digital media - Extempore"}}
    dm_faust:            {name: {en: "digital media - FAUST, Functional Audio STream"}}
    dm_hmsl:             {name: {en: "digital media - Hierarchical Music Specification Language"}}
-   dm_impromptu:        {name: {en: "digital media - Impromptu"}, family: scheme}
+   dm_impromptu:        {name: {en: "digital media - Impromptu"}, family: [scheme]}
    dm_jfugue:           {name: {en: "digital media - JFugue"}}
    dm_jmusic:           {name: {en: "digital media - jMusic"}}
    dm_jsyn:             {name: {en: "digital media - JSyn"}}
@@ -330,11 +337,11 @@ uids:
    dircolors:           {name: {en: "dircolors input"}}
    django:              {name: {en: "Django template"}}
    dnsmasq:             {name: {en: "dnsmasq conf"}}
-   docbook_sgml:        {name: {en: "DocBook SGML"}, family: sgml}
-   docbook_xml:         {name: {en: "DocBook XML"}, family: xml}
+   docbook_sgml:        {name: {en: "DocBook SGML"}, family: [sgml]}
+   docbook_xml:         {name: {en: "DocBook XML"}, family: [xml]}
    dockerfile:          {name: {en: "Dockerfile"}}
    dos:                 {name: {en: "DOS"}}
-   dos_batch:           {name: {en: "DOS Batch"}, family: dos}
+   dos_batch:           {name: {en: "DOS Batch"}, family: [dos]}
    doxygen:             {name: {en: "DoxyGen"}}
    dsssl:               {name: {en: "Document Style Semantics and Specification Language"}}
    dtrace:              {name: {en: "Solaris DTrace D script"}}
@@ -344,7 +351,7 @@ uids:
    dylan_lid:           {name: {en: "Dylan Library Interface"}}
 
 # E                     ________________________________________________________________________
-   e:                   {name: {en: "E programming language"}, family: java}
+   e:                   {name: {en: "E programming language"}, family: [java]}
    eda_altera:          {name: {en: "Altera Hardware Description Language"}}
    eda_diva:            {name: {en: "SKILL Diva verification rules"}}
    eda_dracula:         {name: {en: "Dracula design rule checking"}}
@@ -353,14 +360,14 @@ uids:
    eda_magma:           {name: {en: "IC design - Magma"}}
    eda_mentor:          {name: {en: "IC design - Mentor"}}
    eda_sdc:             {name: {en: "IC design - Synopsis Design Constraints"}}
-   eda_skill:           {name: {en: "Silicon Compiler Interface Language (Cadence)"}, family: lisp}
+   eda_skill:           {name: {en: "Silicon Compiler Interface Language (Cadence)"}, family: [lisp]}
    eda_specman:         {name: {en: "Specman E-Language"}}
    eda_spice:           {name: {en: "IC design - SPICE"}}
-   eda_vams:            {name: {en: "Verilog-AMS (analogue and mixed signal"}, family: verilog}
+   eda_vams:            {name: {en: "Verilog-AMS (analogue and mixed signal"}, family: [verilog]}
    eda_vera:            {name: {en: "IC verification - OpenVera"}}
    eda_verilog:         {name: {en: "Verilog HDL (hardware description language), IEEE 1364"}}
    eda_vhdl:            {name: {en: "VHDL [VHSIC (Very High Speed Integrated Circuit) HDL]"}}
-   eda_vsy:             {name: {en: "SystemVerilog, IEEE 1800"}, family: verilog}
+   eda_vsy:             {name: {en: "SystemVerilog, IEEE 1800"}, family: [verilog]}
    edif:                {name: {en: "Electronic Design Interchange Format s-expressions"}}
    eiffel:              {name: {en: "Eiffel"}}
    eiffel_pyxis:        {name: {en: "Eiffel Pyxis (Lace replacement)"}}
@@ -372,7 +379,7 @@ uids:
    eruby_tpl:           {name: {en: "eRuby (Embedded Ruby) template"}}
    esmtp_conf:          {name: {en: "ESMTP conf"}}
    esql:                {name: {en: "language embedded SQL"}}
-   esql_c:              {name: {en: "ESQL-C"}, family: esql}
+   esql_c:              {name: {en: "ESQL-C"}, family: [esql]}
    essbase_script:      {name: {en: "Essbase script"}}
    esterel:             {name: {en: "Esterel"}}
    eterm_conf:          {name: {en: "eterm(1) conf"}}
@@ -385,7 +392,7 @@ uids:
    falcon_conf:         {name: {en: "Falcon HTTPd for Ruby, conf"}}
    fantom:              {name: {en: "Fantom"}}
    fetchmail_conf:      {name: {en: "Fetchmail conf"}}
-   flex:                {name: {en: "Flex fast lexical analyzer generator"}, family: lex}
+   flex:                {name: {en: "Flex fast lexical analyzer generator"}, family: [lex]}
    flexwiki:            {name: {en: "FlexWiki"}}
    form:                {name: {en: "FORM symbolic manipulation system"}}
    forth:               {name: {en: "FORTH"}}
@@ -411,7 +418,7 @@ uids:
    gml_adl:             {name: {en: "graphical modeling - Architecture description language"}}
    gml_aadl:            {name: {en: "graphical modeling - AADL"}}
    gml_bt:              {name: {en: "graphical modeling - Behaviour Tree"}}
-   gml_bpml:            {name: {en: "graphical modeling - Business Process Modeling Language"}, family: xml}
+   gml_bpml:            {name: {en: "graphical modeling - Business Process Modeling Language"}, family: [xml]}
    gml_bpmn:            {name: {en: "graphical modeling - Business Process Modeling Notation"}}
    gml_ck:              {name: {en: "graphical modeling - C-K theory"}}
    gml_drakon:          {name: {en: "graphical modeling - DRAKON"}}
@@ -440,7 +447,7 @@ uids:
    gprof:               {name: {en: "gprof output"}}
    grads:               {name: {en: "GrADS Grid Analysis and Display System script"}}
    gretl:               {name: {en: "Gnu Regression, Econometrics and Time-series Library"}}
-   groff:               {name: {en: "groff"}, family: nroff}
+   groff:               {name: {en: "groff"}, family: [nroff]}
    groovy:              {name: {en: "Groovy"}}
    grub:                {name: {en: "GRUB conf"}}
    gsp:                 {name: {en: "GNU Server Pages"}}
@@ -456,12 +463,12 @@ uids:
    hg_commit:           {name: {en: "hg (Mercurial) commit"}}
    hog:                 {name: {en: "hog (Snort conf + rules)"}}
    html:                {name: {en: "HTML"}}
-   html_cheetah:        {name: {en: "HTML with Cheetah tags"}, family: html}
+   html_cheetah:        {name: {en: "HTML with Cheetah tags"}, family: [html]}
    html_django:         {name: {en: "Django HTML template"}, family: [html, django]}
    html_m4:             {name: {en: "HTML and M4"}, family: [html, m4]}
-   html_os:             {name: {en: "Aestiva HTML/OS"}, family: html}
+   html_os:             {name: {en: "Aestiva HTML/OS"}, family: [html]}
    html_tidy_conf:      {name: {en: "HTML Tidy conf"}}
-   hyper_builder:       {name: {en: "Hyper Builder"}, family: html}
+   hyper_builder:       {name: {en: "Hyper Builder"}, family: [html]}
 
 # I                     ________________________________________________________________________
    i4gl:                {name: {en: "IBM Informix-4GL"}}
@@ -514,10 +521,10 @@ uids:
    kix:                 {name: {en: "KiXtart script"}}
    kimwitu:             {name: {en: "Kimwitu/Kimwitu++"}}
    kscript:             {name: {en: "Kotlin Kscript"}}
-   ksh:                 {name: {en: "Korn Shell"}, family: sh}
+   ksh:                 {name: {en: "Korn Shell"}, family: [sh]}
 
 # L                     ________________________________________________________________________
-   lamda_prolog:        {name: {en: "Lamda Prolog"}, family: prolog}
+   lamda_prolog:        {name: {en: "Lamda Prolog"}, family: [prolog]}
    ld:                  {name: {en: "ld(1) linker script"}}
    ldap_conf:           {name: {en: "ldap.conf(5)"}}
    ldap_ldif:           {name: {en: "LDAP LDIF"}}
@@ -531,7 +538,7 @@ uids:
    lite_sql:            {name: {en: "LiteSQL"}}
    litestep_conf:       {name: {en: "LiteStep conf"}}
    locale:              {name: {en: "FDCC (Formal Definitions of Cultural Conventions) locale conf"}}
-   logtalk:             {name: {en: "Logtalk"}, family: prolog}
+   logtalk:             {name: {en: "Logtalk"}, family: [prolog]}
    lotos:               {name: {en: "Language Of Temporal Ordering Specifications, IS8807"}}
    lotusscript:         {name: {en: "LotusScript"}}
    lout:                {name: {en: "Basser Lout document formatting"}}
@@ -542,7 +549,7 @@ uids:
    lynx_style:          {name: {en: "Lynx style"}}
 
 # M                     ________________________________________________________________________
-   magicl:              {name: {en: "MAGIC/L"}, family: forth}
+   magicl:              {name: {en: "MAGIC/L"}, family: [forth]}
    mailcap:             {name: {en: "mailcap(5) conf"}}
    make:                {name: {en: "Makefile"}}
    mallard:             {name: {en: "Mallard markup"}}
@@ -562,7 +569,7 @@ uids:
    media_sdp:           {name: {en: "multimedia Stream Descriptor 'SDP'"}}
    meltwater_datasift:  {name: {en: "Curated Stream Definition Language (CSDL)"}}
    metapost:            {name: {en: "MetaPost"}}
-   ml:                  {name: {en: "ML (Meta Language)"}, family: lisp}
+   ml:                  {name: {en: "ML (Meta Language)"}, family: [lisp]}
    modula_2:            {name: {en: "Modula 2"}}
    modula_3:            {name: {en: "Modula 3"}}
    moo:                 {name: {en: "Moo"}}
@@ -611,7 +618,7 @@ uids:
    ont_loom:            {name: {en: "ontology lang - LOOM"}}
    ont_ocml:            {name: {en: "ontology lang - OCML, Operational Conceptual Modeling Language"}}
    ont_okbc:            {name: {en: "ontology lang - OKBC, Open Knowledge Base Connectivity"}}
-   ont_olingua:         {name: {en: "ontology lang - KIF / Ontolingua"}, family: ont_kif}
+   ont_olingua:         {name: {en: "ontology lang - KIF / Ontolingua"}, family: [ont_kif]}
    ont_oil:             {name: {en: "ontology lang - OIL, Ontology Inference Layer"}}
    ont_owl:             {name: {en: "ontology lang - OWL, Web Ontology Language"}}
    ont_plib:            {name: {en: "ontology lang - PLIB, Parts LIBrary"}}
@@ -622,7 +629,7 @@ uids:
    ont_uml:             {name: {en: "ontology lang - OntoUML"}}
    openssh_conf:        {name: {en: "OpenSSH client conf"}}
    opensshd_conf:       {name: {en: "OpenSSH server conf"}}
-   opl:                 {name: {en: "Open Programming Language"}, family: basic}
+   opl:                 {name: {en: "Open Programming Language"}, family: [basic]}
    oracle_conf:         {name: {en: "Oracle conf"}}
    oval:                {name: {en: "Open Vulnerability and Assessment Language"}}
    ovms_pli:            {name: {en: "OpenVMS PL/I"}}
@@ -636,13 +643,13 @@ uids:
    pdf:                 {name: {en: "PDF"}}
    perl:                {name: {en: "Perl"}}
    perl_tt:             {name: {en: "Perl Template Toolkit"}}
-   perl_tthtm:          {name: {en: "Perl Template Toolkit, embedded with HTML"}, family: html}
-   perl_ttjs:           {name: {en: "Perl Template Toolkit, embedded with Javascript"}, family: javascript}
+   perl_tthtm:          {name: {en: "Perl Template Toolkit, embedded with HTML"}, family: [html]}
+   perl_ttjs:           {name: {en: "Perl Template Toolkit, embedded with Javascript"}, family: [javascript]}
    perl_xs:             {name: {en: "Perl extension interface"}}
    pf:                  {name: {en: "OpenBSD packet filter conf"}}
    php:                 {name: {en: "PHP"}}
    pike:                {name: {en: "Pike"}}
-   pike_cmod:           {name: {en: "Pike Cmod module"}, family: c}  # is it actually both C & Pike combined?
+   pike_cmod:           {name: {en: "Pike Cmod module"}, family: [c]}  # is it actually both C & Pike combined?
    pilrc:               {name: {en: "Palm OS resource compiler"}}
    pine_conf:           {name: {en: "Pine (email) conf"}}
    pinfo_conf:          {name: {en: "pinfo(1) conf"}}
@@ -651,8 +658,6 @@ uids:
    pod:                 {name: {en: "Perl POD document"}}
    postfix_aliases:     {name: {en: "Postfix aliases"}}
    postfix_conf:        {name: {en: "Postfix main.cf conf"}}
-   pov:                 {name: {en: "PoV-Ray Scene Description Language"}}
-   pov_conf:            {name: {en: "PoV-Ray conf"}}
    ppd:                 {name: {en: "PostScript printer description"}}
    ppwiz:               {name: {en: "PPWizard (preprocessor by Dennis Bareis)"}}
    prescribe2e:         {name: {en: "Kyocera PreScribe2e"}}
@@ -669,12 +674,12 @@ uids:
    ps:                  {name: {en: "PostScript"}}
    psf:                 {name: {en: "Software Distributor product specification file, POSIX 1387.2-1995"}}
    psi_purify_log:      {name: {en: "Pure Software Inc. Purify C/C++ memory debugger logs"}} # https://web.stanford.edu/class/cs343/resources/purify-ug.pdf
-   py_spyce:            {name: {en: "Python Spyce, python in html"}, family: python}
-   pyrex:               {name: {en: "Pyrex"}, family: Python}
+   py_spyce:            {name: {en: "Python Spyce, python in html"}, family: [python]}
+   pyrex:               {name: {en: "Pyrex"}, family: [python]}
    python:              {name: {en: "Python"}, influenced_by: [abcpl]}
 
 # Q                     ________________________________________________________________________
-   quakec:              {name: {en: "QuakeC"}, family: c}
+   quakec:              {name: {en: "QuakeC"}, family: [c]}
 
 # R                     ________________________________________________________________________
    r:                   {name: {en: "R, GNU S"}}
@@ -697,20 +702,20 @@ uids:
    relax_ngc:           {name: {en: "Relax NG compact"}}
    remind:              {name: {en: "Remind calendar and alarm"}}
    resolv_conf:         {name: {en: "resolv.conf(5)"}}
-   reva:                {name: {en: "Reva Forth"}, family: forth}
+   reva:                {name: {en: "Reva Forth"}, family: [forth]}
    rexx:                {name: {en: "Rexx"}}
    rib:                 {name: {en: "Renderman Interface Bytestream"}}
    rock_desc:           {name: {en: "ROCK Linux .desc file"}}
    robots_txt:          {name: {en: "robots.txt"}}
-   rpcgen:              {name: {en: "rpcgen"}, family: c}
+   rpcgen:              {name: {en: "rpcgen"}, family: [c]}
    rpl:                 {name: {en: "RPL, Reverse Polish Lisp"}}
    rpm_spec:            {name: {en: "RPM package spec"}}
-   rrst:                {name: {en: "reST with R code chunks"}, family: rest}
+   rrst:                {name: {en: "reST with R code chunks"}, family: [rest]}
    rst:                 {name: {en: "reStructuredText documentation"}}
    rtf:                 {name: {en: "Rich Text Format"}}
    ruby:                {name: {en: "Ruby"}}
    ruby_treetop:        {name: {en: "Ruby Treetop parsing expression grammar"}}
-   rust:                {name: {en: "Rust"}, family: cpp}
+   rust:                {name: {en: "Rust"}, family: [cpp]}
    rxvt_conf:           {name: {en: "[m]rxvt conf"}}
 
 # S                     ________________________________________________________________________
@@ -725,11 +730,6 @@ uids:
    scheme_chicken:      {name: {en: "Scheme + CHICKEN"}}
    scilab:              {name: {en: "Scilab"}}
    screen_conf:         {name: {en: "GNU screen conf"}}
-   sdl_3dmlw:           {name: {en: "3DMLW Scene Description Language"}}
-   sdl_itut:            {name: {en: "Specification and Description Language, ITU-T Z.100-106"}}
-   sdl_povray:          {name: {en: "POV-Ray Scene Description Language"}}
-   sdl_tao:             {name: {en: "Tao Scene Description Language"}}
-   sdl_x3d:             {name: {en: "X3D Scene Description Language"}, supercedes: [obs_vrml]}
    sdml:                {name: {en: "Simple DirectMedia Layer"}}
    sed:                 {name: {en: "sed(1)"}}
    seebeyond_monk:      {name: {en: "SeeBeyond Monk"}}
@@ -745,7 +745,7 @@ uids:
    shopify_liquid:      {name: {en: "Shopify Liquid template"}}
    sicad:               {name: {en: "Silicon Integration Initiative SiCAD"}}
    sieve_filter:        {name: {en: "Sieve email filter"}}
-   simula:              {name: {en: "Simula"}, family: algol}
+   simula:              {name: {en: "Simula"}, family: [algol]}
    sinda_fluint:        {name: {en: "Systems Improved Numerical Differencing Analyzer and Fluid Integrator (SINDA85)"}}
    sinda_cmp:           {name: {en: "sinda compare file"}}
    sinda_out:           {name: {en: "sinda output file"}}
@@ -759,7 +759,7 @@ uids:
    smalltalk:           {name: {en: "Smalltalk"}}
    smarty:              {name: {en: "Smarty template"}}
    smil:                {name: {en: "SMIL, Synchronized Multimedia Integration Language, W3C"}}
-   sml:                 {name: {en: "Standard ML (Standard Meta Language)"}, family: ml}
+   sml:                 {name: {en: "Standard ML (Standard Meta Language)"}, family: [ml]}
    snmp_mib:            {name: {en: "SNMP MIB and SMI files"}}
    snns_net:            {name: {en: "SNNS (Stuttgart Neural Network Simulator) network"}}
    snns_pat:            {name: {en: "SNNS (Stuttgart Neural Network Simulator) pattern"}}
@@ -769,16 +769,16 @@ uids:
    spacedesign_tss_geo: {name: {en: "Spacedesign TSS (Thermal Synthesizer System) geometry"}}
    spacedesign_tss_opt: {name: {en: "Spacedesign TSS (Thermal Synthesizer System) optics"}}
    sql:                 {name: {en: "SQL"}}
-   sql_anywhere:        {name: {en: "SQL Anywhere"}, family: sql}
-   sql_hana:            {name: {en: "SAP HANA in memory db SQL"}, family: sql}
-   sql_informix:        {name: {en: "Informix Dynamic Server 'SPL'"}, family: sql}
-   sql_java:            {name: {en: "sqlj"}, family: sql}
-   sql_ms_stp:          {name: {en: "MS SQL Server stored procedures (STP)"}, family: sql}
-   sql_msql:            {name: {en: "msql"}, family: sql}
-   sql_mysql:           {name: {en: "mysql"}, family: sql}
-   sql_oforms:          {name: {en: "Oracle SQL*Forms"}, family: sql}
-   sql_oracle:          {name: {en: "Oracle SQL"}, family: sql}
-   sql_plsql:           {name: {en: "Oracle PL/SQL"}, family: sql}
+   sql_anywhere:        {name: {en: "SQL Anywhere"}, family: [sql]}
+   sql_hana:            {name: {en: "SAP HANA in memory db SQL"}, family: [sql]}
+   sql_informix:        {name: {en: "Informix Dynamic Server 'SPL'"}, family: [sql]}
+   sql_java:            {name: {en: "sqlj"}, family: [sql]}
+   sql_ms_stp:          {name: {en: "MS SQL Server stored procedures (STP)"}, family: [sql]}
+   sql_msql:            {name: {en: "msql"}, family: [sql]}
+   sql_mysql:           {name: {en: "mysql"}, family: [sql]}
+   sql_oforms:          {name: {en: "Oracle SQL*Forms"}, family: [sql]}
+   sql_oracle:          {name: {en: "Oracle SQL"}, family: [sql]}
+   sql_plsql:           {name: {en: "Oracle PL/SQL"}, family: [sql]}
    sql_sqr:             {name: {en: "Hyperion SQR Production Reporting"}}
    squid_conf:          {name: {en: "Squid conf"}}
    srec:                {name: {en: "Motorola S-Record/ SREC/ SRECORD/ S19/ S28/ S37"}}
@@ -791,7 +791,7 @@ uids:
    svg:                 {name: {en: "SVG - Scalable Vector Graphics"}}
    svn:                 {name: {en: "Subversion svn commit"}}
    symbian_mmp:         {name: {en: "Symbian meta-makefile definition (MMP)"}}
-   systemd_unit:        {name: {en: "systemd.unit(5) conf"}, family: ini}
+   systemd_unit:        {name: {en: "systemd.unit(5) conf"}, family: [ini]}
    sysv_inittab:        {name: {en: "SysV inittab"}}
 
 # T                     ________________________________________________________________________
@@ -800,7 +800,7 @@ uids:
    tap:                 {name: {en: "TAP - Test Anything Protocol"}}
    tar_list:            {name: {en: "tar(1) list"}}
    tcl:                 {name: {en: "Tcl/Tk"}}
-   tcsh:                {name: {en: "tcsh"}, family: csh}
+   tcsh:                {name: {en: "tcsh"}, family: [csh]}
    tera_term:           {name: {en: "Tera Term Language (TTL)"}}
    termcap:             {name: {en: "termcap(5) conf"}}
    terminfo:            {name: {en: "terminfo(5) conf"}}
@@ -817,12 +817,12 @@ uids:
    udev_conf:           {name: {en: "udev(8) conf"}}
    udev_perm:           {name: {en: "udev(8) perms"}}
    udev_rules:          {name: {en: "udev(8) rules"}}
-   unix_group:          {name: {en: "group file"}, family: unix_passwd}
+   unix_group:          {name: {en: "group file"}, family: [unix_passwd]}
    unix_host_conf:      {name: {en: "unix host.conf"}}
-   unix_hosts_access:   {name: {en: "hosts allow deny"}, family: conf}
+   unix_hosts_access:   {name: {en: "hosts allow deny"}, family: [conf]}
    unix_log:            {name: {en: "Unix logfile"}}
-   unix_login_access:   {name: {en: "login.access(5)"}, family: conf}
-   unix_login_defs:     {name: {en: "login.defs(5)"}, family: conf}
+   unix_login_access:   {name: {en: "login.access(5)"}, family: [conf]}
+   unix_login_defs:     {name: {en: "login.defs(5)"}, family: [conf]}
    unix_modules_conf:   {name: {en: "BSD kernel modules conf"}}
    unix_passwd:         {name: {en: "unix passwd(5) file"}}
    unix_sysctl:         {name: {en: "unix sysctl.conf(5)"}}
@@ -831,7 +831,7 @@ uids:
    upstart_job:         {name: {en: "Upstart job file"}}
 
 # V                     ________________________________________________________________________
-   vala:                {name: {en: "Vala"}, family: cs}
+   vala:                {name: {en: "Vala"}, family: [cs]}
    valgrind_defs:       {name: {en: "Vgrindefs"}}
    valgrind_model:      {name: {en: "Valgrind model"}}
    valgrind_out:        {name: {en: "Valgrind memory debugger output"}}
@@ -858,14 +858,14 @@ uids:
    x_conf:              {name: {en: "X server conf"}}
    x_resources:         {name: {en: "X resources/ defaults"}}
    x_xkb:               {name: {en: "X keyboard conf"}}
-   xhtml:               {name: {en: "XHTML"}, family: html}
+   xhtml:               {name: {en: "XHTML"}, family: [html]}
    xinetd_conf:         {name: {en: "xinetd.conf(5)"}}
    xml:                 {name: {en: "eXtensible Markup Language"}}
-   xml_dtd:             {name: {en: "XML Document Type Definition"}, family: xml}
-   xml_xbl:             {name: {en: "XML Binding Language"}, family: xml}
-   xml_xquery:          {name: {en: "XML Query"}, family: xml}
-   xml_xsd:             {name: {en: "XML Schema"}, family: xml}
-   xml_xslt:            {name: {en: "eXtensible Stylesheet Language Transformations"}, family: xml}
+   xml_dtd:             {name: {en: "XML Document Type Definition"}, family: [xml]}
+   xml_xbl:             {name: {en: "XML Binding Language"}, family: [xml]}
+   xml_xquery:          {name: {en: "XML Query"}, family: [xml]}
+   xml_xsd:             {name: {en: "XML Schema"}, family: [xml]}
+   xml_xslt:            {name: {en: "eXtensible Stylesheet Language Transformations"}, family: [xml]}
    xmodmap_conf:        {name: {en: "xmodmap(1) conf"}}
    xpm:                 {name: {en: "X pixmap"}}
    xpm2:                {name: {en: "X pixmap v2"}}
@@ -879,5 +879,5 @@ uids:
    zeroc_slice:         {name: {en: "Slice, ZeroC Specification Language for Ice"}}
    zimbu:               {name: {en: "Zimbu"}}
    zope_dtml:           {name: {en: "Zope Dynamic Template Markup Language"}}
-   zsh:                 {name: {en: "zsh"}, family: sh}
+   zsh:                 {name: {en: "zsh"}, family: [sh]}
 
