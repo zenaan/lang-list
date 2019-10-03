@@ -28,6 +28,9 @@ Syntax categories include:
  - protocol formats
 
 
+* auto-gen TOC:
+{:toc}
+
 
 ## Background
 
