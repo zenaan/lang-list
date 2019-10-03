@@ -55,7 +55,12 @@ combination of the following or other file type identification systems:
  - operating system- and filesystem-specific extended attributes
 
 The [editorconfig](http://editorconfig.org/) project, in particular
-editorconfig/editorconfig#190 and editorconfig/editorconfig#404, inspired the `lang-list`.
+editorconfig/editorconfig#190
+https://github.com/editorconfig/editorconfig/issues/190
+and
+editorconfig/editorconfig#404
+https://github.com/editorconfig/editorconfig/issues/404
+, inspired the `lang-list`.
 
 The initial creation has been some rather tedious effort - from here the list should be
 relatively stable, broadly applicable, and easy to maintain and translate.
@@ -161,6 +166,7 @@ In the protocols (as pseudo code functions) below:
 ```
 str_to_syntax_uid(STR) {
 	# Convert STRing to syntax_uid:
+
 	syntax_uid := syntax_uids . uids . $STR . alias_of
 	if syntax_uid != ""
 	then
@@ -182,6 +188,7 @@ str_to_syntax_uid(STR) {
 ```
 str_to_app_sid(STR) {
 	# Convert STRing to app syntax id
+
 	syntax_uid := str_to_syntax_uid($STR)
 	app_sid := app_map . syntax_uid_to . $syntax_uid . map
 	if app_sid == "" then warn("$APP does not support the syntax_uid '$syntax_uid'")
@@ -192,6 +199,7 @@ str_to_app_sid(STR) {
 ```
 app_sid_to_syntax_uid(SID)
 	# Convert app syntax id to syntax_uid
+
 	syntax_uid := app_map . syntax_uid_to . first_key_for_value($syntax_uid)
 	if syntax_uid == "" then error("$APP syntax id '$SID' does not have a lang-list syntax_uid")
 }
