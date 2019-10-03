@@ -78,19 +78,19 @@ Boolean values may be `true` or `false` only.
 
 The lang-list data structures are as follows:
 
-1. **`syntax_uids`** (`syntax_uids.yaml`): _map_, keyed by field name:
+**A.** **`syntax_uids`** (`syntax_uids.yaml`): _map_, keyed by field name:
 
-   1. `protocol`: _integer_, currently `0`, monotonically increasing if necessary
+  1. `protocol`: _integer_, currently `0`, monotonically increasing if necessary
 
-   1. `version`: _integer_, initially `0`, monotonically increasing with each public release
+  1. `version`: _integer_, initially `0`, monotonically increasing with each public release
 
-   1. `released`: _integer_, public release date of this version, in "ISO format, no
-      punctuation" i.e. `YYYYMMDD`
+  1. `released`: _integer_, public release date of this version, in "ISO format, no
+     punctuation" i.e. `YYYYMMDD`
 
-   1. `uids`: _map_, keyed by `$syntax_uid`
+  1. `uids`: _map_, keyed by `$syntax_uid`
 
 
-2. **`$syntax_uid`** (`syntax_uids . uids . $syntax_uid`): _map_, keyed by field name:
+**B.** **`$syntax_uid`** (`syntax_uids . uids . $syntax_uid`): _map_, keyed by field name:
 
    1. `unknown`: _boolean_, optional, `true` if this uid is not (yet) properly identified,
       `false` otherwise or if not present
@@ -121,25 +121,18 @@ The lang-list data structures are as follows:
       `false` otherwise or if not present
 
 
-3. **`app_map`** (`app_maps/${APPNAME}.yaml`): _map_, keyed by field name:
+**C.** **`app_map`** (`app_maps/${APPNAME}.yaml`): _map_, keyed by field name:
 
-   1. `protocol`: _integer_, currently `0`, only increase if necessary
-
-   1. `version`: _integer_, initially `0`, monotonically increasing with each public release of
-      this specific app_map
-
-   1. `released`: _integer_, public release date of this version, in "ISO format, no punctuation" i.e. `YYYYMMDD`
-
-   1. `syntax_uid_to`: _map_, keyed by `$syntax_uid`
+1. `protocol`: _integer_, currently `0`, only increase if necessary
+1. `version`: _integer_, initially `0`, monotonically increasing with each public release of this specific app_map
+1. `released`: _integer_, public release date of this version, in "ISO format, no punctuation" i.e. `YYYYMMDD`
+1. `syntax_uid_to`: _map_, keyed by `$syntax_uid`
 
 
-4. **`syntax_uid`** (`app_map . syntax_uid_to . $syntax_uid`): _map_, keyed by field name:
+**D.** **`syntax_uid`** (`app_map . syntax_uid_to . $syntax_uid`): _map_, keyed by field name:
 
-   1. `map`: _string_, mandatory, the application's syntax name corresponding to this
-      `syntax_uid`
-
-   1. `run`: list of _string_, optional, list of commands and/ or settings to apply, in
-      combination with the `map` value, in order to cause `syntax_uid` to apply
+   1. `map`: _string_, mandatory, the application's syntax name corresponding to this `syntax_uid`
+   1. `run`: list of _string_, optional, list of commands and/ or settings to apply, in combination with the `map` value, in order to cause `syntax_uid` to apply
 
 
 
