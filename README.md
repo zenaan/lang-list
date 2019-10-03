@@ -143,7 +143,7 @@ The lang-list data structures are as follows:
 
 
 
-## lang-list Lookup Protocol Functions
+## Lookup Protocol Functions
 
 Protocols for using `syntax_uid` are necessary to provide for:
  - backwards compatibility
