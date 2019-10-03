@@ -139,22 +139,22 @@ Protocols for using `syntax_uid` are necessary to provide for:
 As [seen here](https://github.com/editorconfig/editorconfig/issues/404#issuecomment-537875150),
 an EDITOR plugin will need to do something like the following:
 
-** 1. ** see that a file has been opened
+**1.** see that a file has been opened
 
-** 2. ** check the .editorconfig for settings for this file
+**2.** check the .editorconfig for settings for this file
 
-** 3. ** check if `syntax` (filetype) is declared for this file,
+**3.** check if `syntax` (filetype) is declared for this file,
 
-** 3.a. ** if so, use the .editorconfig declared `$syntax` as the
+**3.a.** if so, use the .editorconfig declared `$syntax` as the
   `syntax_uid` (nee "filetype") for this file
 
-** 3.b.i. ** if not, use the $EDITOR's filetype detection to determine
+**3.b.i.** if not, use the $EDITOR's filetype detection to determine
   the $EDITOR's filetype/syntax `SID` for this file
 
-** 3.b.ii. ** given $EDITOR's syntax `$SID`, use the lang-list
+**3.b.ii.** given $EDITOR's syntax `$SID`, use the lang-list
   `app_map/$EDITOR.yaml` map to reverse-lookup the corresponding `syntax_uid`
 
-** 4. ** Finally, given the `$syntax_uid` for this file, lookup the
+**4.** Finally, given the `$syntax_uid` for this file, lookup the
   .editorconfig settings for this `$syntax_uid`
 
 
@@ -292,9 +292,13 @@ Note: The `syntax_uid.yaml` file is not normally loaded by editorconfig plugins,
 
 
 
-## Jobs - `app_maps/${MY_EDITOR}.yaml` - `l10n/${LANG}/syntax_uids.yaml`
+## Jobs
 
 NOTE: THIS IS A PROPOSAL/ proof of concept only, it is NOT yet implemented.
+
+`app_maps/${MY_EDITOR}.yaml`
+
+`l10n/${LANG}/syntax_uids.yaml`
 
 To apply the lang-list to another editor, copy `app_maps/vim.yaml` to
 `app_maps/${MY_EDITOR}.yaml` and update each `map:` value to the corresponding syntax ID for
@@ -317,7 +321,11 @@ shall be a YAML specification compliant file. See here:
 
 
 
-## Localisation - `l10n/` Subdirectory
+## Localisation
+
+NOTE: THIS IS A PROPOSAL/ proof of concept only, it is NOT yet implemented.
+
+`l10n/$LANG/synax_uids.yaml`
 
 Localization translation files translating `syntax_uid` names, README.md and other material,
 are located in files with the same name and relative location, as the corresponding file in the
