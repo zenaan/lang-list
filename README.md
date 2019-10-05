@@ -116,7 +116,7 @@ The lang-list data structures are as follows:
    if present the value is the list of `syntax_uid`s of which this syntax is associated
 1. **`name`**: _map_ keyed by [IETF BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag)
    (a _string_ identified herein as `$LANG`),
-   with a minimum inclusion of "`{name: {en: "${English_syntax_name}"}}`",
+   with a minimum inclusion of "`{name: {**en**: "${English_syntax_name}"}}`",
    include _only_ the LANG **`en`** in the root `syntax_uids.yaml` file,
    `name` is optional in the case of an alias or unknown `syntax_uid`,
    **mandatory** otherwise
@@ -356,7 +356,7 @@ file, but in the appropriate `l10n/${LANG}/syntax_uids.yaml` file, and similarly
 Such localisation files must be:
  - `UTF-8` encoded
  - "three space chars" indented
- - For `YAML` files translations, YAML files with the same structure as the original file.
+ - For `.yaml` files translations, YAML files with the same structure as the original file.
 
 `$LANG` is the IETF BCP 47 language tag identifying the corresponding localized human language.
 For information about the `IETF BCP 47` "human language" tag, see:
@@ -410,6 +410,7 @@ software license.
 ## See also
 See also:
 
+<<<<<<< HEAD
  - https://github.com/editorconfig/editorconfig/wiki/%5BDevelopment%5D-Discussion-of-language-filetype-support
  - https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
  - https://github.com/github/linguist.git
@@ -423,4 +424,21 @@ See also:
 
  - https://userstyles.org/?utm_campaign=stylish_homepage
  - https://userstyles.org/styles/70979/github-better-sized-tabs-in-code
+=======
+ - <https://github.com/editorconfig/editorconfig/wiki/%5BDevelopment%5D-Discussion-of-language-filetype-support>
+ - <https://github.com/github/linguist/blob/master/lib/linguist/languages.yml>
+ - <https://github.com/github/linguist.git>
+ - <https://en.wikipedia.org/wiki/List_of_programming_languages>
+ - <https://en.wikipedia.org/wiki/Markup_language>
+ - <https://en.wikipedia.org/wiki/List_of_markup_languages>
+ - <https://en.wikipedia.org/wiki/Common_Log_Format>
+ - <https://en.wikipedia.org/wiki/Configuration_file>
+ - <https://medium.com/web-development-zone/a-complete-list-of-computer-programming-languages-1d8bc5a891f>
+ - <https://github.com/garabik/grc>
+ - <https://userstyles.org/?utm_campaign=stylish_homepage>
+ - <https://userstyles.org/styles/70979/github-better-sized-tabs-in-code>, or better yet, the
+   same plugin but configured to apply to all websites:
+   <http://userstyles.org/styles/89425/all-code-has-custom-tab-size> ; experiencing gratitude in
+   browser TAB indent_size :)
+>>>>>>> b91f637... README: Add alternate link for browser TAB size on -all- websites.
 
