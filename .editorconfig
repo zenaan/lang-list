@@ -10,7 +10,7 @@ end_of_line  = lf
 indent_style = tab
 # where indent_style is tab, indent_size should be per-user, NOT per-project or filetype - that's the whole point!
 # BUT, browsers and GitHub render by default at indent_size=8 which sucky as bro, sucky as!
-# Soap, what we do here is set the preferred default ts for tabs, so that the README.md displays
+# So, what we do here is set the preferred default ts for tabs, so that the README.md displays
 # reasonably on GitHub - apologies if you "Live and die by the 8 char TAB, and nothing but the 8
 # char TAB", but you'll need to find a workaround - one good solution would be a per-browser
 # setting, so the end user can change the (default) tab width setting, browser-wide. :
@@ -23,17 +23,17 @@ max_line_length = 96
 insert_final_newline = true
 trim_trailing_whitespace = true
 
+[README.md]
+indent_style = space
 
 [doc/**]
 indent_style = space
 indent_size  = 4
 
-
 # YAML - spaces for indents is mandatory per spec
 [*.yaml]
 indent_style = space
 indent_size  = 3
-
 
 # Java
 [*.java]
@@ -41,4 +41,3 @@ indent_size  = 3
 indent_style = tab
 # this is a recommendation, not absolute:
 max_line_length = 104
-

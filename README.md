@@ -27,14 +27,14 @@ Syntax categories include:
  - data representation formats
  - protocol formats
 
+## Contents
 
-### Contents
  - [Background](#user-content-background)
  - [Data structure](#user-content-data-structure)
  - [Lookup protocol functions](#user-content-lookup-protocol-functions)
-   - [str_to_syntax_uid(STR)](#user-content-str_to_syntax_uidstr)
-   - [str_to_app_sid(STR)](#user-content-str_to_app_sidstr)
-   - [app_sid_to_syntax_uid(SID)](#user-content-app_sid_to_syntax_uidsid)
+   - [`str_to_syntax_uid(STR)`](#user-content-str_to_syntax_uidstr)
+   - [`str_to_app_sid(STR)`](#user-content-str_to_app_sidstr)
+   - [`app_sid_to_syntax_uid(SID)`](#user-content-app_sid_to_syntax_uidsid)
  - [Example with EditorConfig](#user-content-example-with-editorconfig)
  - [Jobs](#user-content-jobs)
  - [Indentation](#user-content-indentation)
@@ -42,7 +42,6 @@ Syntax categories include:
  - [Feature requests and support](#user-content-feature-requests-and-support)
  - [License](#user-content-license)
  - [See also](#user-content-see-also)
-
 
 ## Background
 
@@ -74,17 +73,12 @@ combination of the following or other file type identification systems:
  - operating system- and filesystem-specific extended attributes
 
 The [EditorConfig](http://editorconfig.org/) project, in particular
-editorconfig/editorconfig#190
-https://github.com/editorconfig/editorconfig/issues/190
-and
-editorconfig/editorconfig#404
-https://github.com/editorconfig/editorconfig/issues/404
-, inspired the `lang-list`.
+[editorconfig/editorconfig#190](https://github.com/editorconfig/editorconfig/issues/190)
+and [editorconfig/editorconfig#404](https://github.com/editorconfig/editorconfig/issues/404),
+inspired the `lang-list`.
 
 The initial creation has been some rather tedious effort - from here the list should be
 relatively stable, broadly applicable, and easy to maintain and translate.
-
-
 
 ## Data Structure
 
@@ -141,8 +135,6 @@ The lang-list data structures are as follows:
    in combination with the `map` value,
    in order to cause `syntax_uid` to apply
 
-
-
 ## Lookup Protocol Functions
 
 Protocols for using `syntax_uid` are necessary to provide for:
@@ -172,7 +164,6 @@ an EDITOR plugin will need to do something like the following:
 **4.** Finally, given the `syntax_uid` for this file, lookup the
   .editorconfig settings for this `$syntax_uid`
 
-
 In the protocol pseudo code functions below:
  - `//` begins a comment
  - `.` (period) means lookup or access a map key (field)
@@ -186,8 +177,8 @@ In the protocol pseudo code functions below:
 
 
 ### `str_to_syntax_uid(STR)`
-<!-- NOTE: the following protocol functions are not actual dylan code, that's just a convenient
-     GitHub markdown syntax. -->
+<!-- NOTE: the following protocol functions are not actual dylan code,
+     that's just a convenient GitHub markdown syntax. -->
 
 ```dylan
 define function str_to_syntax_uid (STR :: <string>)
@@ -216,6 +207,7 @@ end str_to_syntax_uid
 ```
 
 ### `str_to_app_sid(STR)`
+
 ```dylan
 define function str_to_app_sid (STR :: <string>)
 	// Convert STRing to app syntax id
@@ -239,6 +231,7 @@ end str_to_app_sid
 ```
 
 ### `app_sid_to_syntax_uid(SID)`
+
 ```dylan
 define function app_sid_to_syntax_uid (SID :: <string>)
 	// Convert app Syntax ID to syntax_uid
@@ -257,11 +250,9 @@ define function app_sid_to_syntax_uid (SID :: <string>)
 end app_sid_to_syntax_uid
 ```
 
-
-
 ## Example with EditorConfig
 
-THIS IS A PROPOSAL/ proof of concept only, it is NOT yet implemented.
+THIS IS A PROPOSAL/proof-of-concept only, it is NOT yet implemented.
 
 For a new EditorConfig $EDITOR syntax uid map, copy `app_maps/vim.yaml` to
 `app_maps/${EDITOR}.yaml` , and update each `syntax_uid_to` entry as follows:
@@ -276,16 +267,16 @@ Next implement the above lookup protocol functions, `str_to_syntax_uid(STR)`,
 `str_to_app_sid(STR)` and `app_sid_to_syntax_uid(SID)`, in your plugin
 (if they are not already available in your editor).
 
-Voi la, your EDITOR's Syntax ID ("file format" or "filetype"), and lang-list's `syntax_uid`,
+Voila, your EDITOR's Syntax ID ("file format" or "filetype"), and lang-list's `syntax_uid`,
 can now each be used to lookup editorconfig language-specific settings, e.g. in an editorconfig
 group named say "`[: syntax_uid=java]`";
 
-and the corollary, an editorconfig file-group setting for `syntax` can ensure the correct syntax
+And the corollary, an editorconfig file-group setting for `syntax` can ensure the correct syntax
 highlighting for those files in your editor.
 
 ### Example:
 
-NOTE: THIS IS A PROPOSAL/ proof of concept only, it is NOT yet implemented.
+NOTE: THIS IS A PROPOSAL/proof-of-concept only, it is NOT yet implemented.
 
 ```ini
 [src/sh/*]
@@ -308,15 +299,13 @@ syntax_uid = java
 Note: The `syntax_uid.yaml` file is not normally loaded by editorconfig plugins, only the
 `app_maps/$EDITOR.yaml` file should be needed.
 
-
-
 ## Jobs
 
-NOTE: THIS IS A PROPOSAL/ proof of concept only, it is NOT yet implemented.
+NOTE: THIS IS A PROPOSAL/proof-of-concept only, it is NOT yet implemented.
 
-`app_maps/${MY_EDITOR}.yaml`
+- `app_maps/${MY_EDITOR}.yaml`
 
-`l10n/${LANG}/syntax_uids.yaml`
+- `l10n/${LANG}/syntax_uids.yaml`
 
 To apply the lang-list to another editor, copy `app_maps/vim.yaml` to
 `app_maps/${MY_EDITOR}.yaml` and update each `map:` value to the corresponding syntax ID for
@@ -325,8 +314,6 @@ Find happiness in gratitude.
 
 To translate `syntax_uid` names, see section "Localisation..." below.
 Find happiness in gratitude.
-
-
 
 ## Indentation
 
@@ -337,11 +324,9 @@ shall be a YAML specification compliant file. See here:
  - https://stackoverflow.com/questions/19975954/a-yaml-file-cannot-contain-tabs-as-indentation
  - http://yaml.org/faq.html
 
-
-
 ## Localisation
 
-NOTE: THIS IS A PROPOSAL/ proof of concept only, it is NOT yet implemented.
+NOTE: THIS IS A PROPOSAL/proof-of-concept only, it is NOT yet implemented.
 
 `l10n/$LANG/synax_uids.yaml`
 
@@ -361,11 +346,11 @@ Such localisation files must be:
 `$LANG` is the IETF BCP 47 language tag identifying the corresponding localized human language.
 For information about the `IETF BCP 47` "human language" tag, see:
 
- - https://en.wikipedia.org/wiki/IETF_language_tag
- - http://cldr.unicode.org/index/cldr-spec/picking-the-right-language-code
- - https://en.wikipedia.org/wiki/Lists_of_ISO_639_codes
- - https://salsa.debian.org/iso-codes-team/iso-codes
- - https://stackoverflow.com/questions/2511076/which-iso-format-should-i-use-to-store-a-users-language-code
+ - <https://en.wikipedia.org/wiki/IETF_language_tag>
+ - <http://cldr.unicode.org/index/cldr-spec/picking-the-right-language-code>
+ - <https://en.wikipedia.org/wiki/Lists_of_ISO_639_codes>
+ - <https://salsa.debian.org/iso-codes-team/iso-codes>
+ - <https://stackoverflow.com/questions/2511076/which-iso-format-should-i-use-to-store-a-users-language-code>
 
 Each localization file must have the same structure as `languages.yaml` but less content. In
 particular the file contains the following YAML mapping keys:
@@ -384,8 +369,6 @@ particular the file contains the following YAML mapping keys:
    changed, over time;
    `git` commands can be used to identify such differences.
 
-
-
 ## Feature requests and support
 
 For feature requests and support, please search the [lang-list issues
@@ -393,38 +376,21 @@ list](https://github.com/zenaan/lang-list/issues) and if your feature or issue i
 add a new issue.
 
 If you wish to register your interest in an issue, click the "subscribe" button -
-please do _not_ add "+1"s or "mee too" comments.
+please do _not_ add "+1"s or "me too" comments.
 
 You may set your GitHub settings to receive emails for updates on issues you are subscribed to.
 
-
-
 ## License
+
 `lang-list` is licensed by the `GNU Lesser General Public License version 3` aka `LGPL3`.
 
 The LGPL reflects the need for lang-list to be usable as a library in relation to any other
 software license.
 
-
-
 ## See also
+
 See also:
 
-<<<<<<< HEAD
- - https://github.com/editorconfig/editorconfig/wiki/%5BDevelopment%5D-Discussion-of-language-filetype-support
- - https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
- - https://github.com/github/linguist.git
- - https://en.wikipedia.org/wiki/List_of_programming_languages
- - https://en.wikipedia.org/wiki/Markup_language
- - https://en.wikipedia.org/wiki/List_of_markup_languages
- - https://en.wikipedia.org/wiki/Common_Log_Format
- - https://en.wikipedia.org/wiki/Configuration_file
- - https://medium.com/web-development-zone/a-complete-list-of-computer-programming-languages-1d8bc5a891f
- - https://github.com/garabik/grc
-
- - https://userstyles.org/?utm_campaign=stylish_homepage
- - https://userstyles.org/styles/70979/github-better-sized-tabs-in-code
-=======
  - <https://github.com/editorconfig/editorconfig/wiki/%5BDevelopment%5D-Discussion-of-language-filetype-support>
  - <https://github.com/github/linguist/blob/master/lib/linguist/languages.yml>
  - <https://github.com/github/linguist.git>
@@ -440,5 +406,4 @@ See also:
    same plugin but configured to apply to all websites:
    <http://userstyles.org/styles/89425/all-code-has-custom-tab-size> ; experiencing gratitude in
    browser TAB indent_size :)
->>>>>>> b91f637... README: Add alternate link for browser TAB size on -all- websites.
 
