@@ -267,9 +267,9 @@ Next implement the above lookup protocol functions, `str_to_syntax_uid(STR)`,
 `str_to_app_sid(STR)` and `app_sid_to_syntax_uid(SID)`, in your plugin
 (if they are not already available in your editor).
 
-Voila, your EDITOR's Syntax ID ("file format" or "filetype"), and lang-list's `syntax_uid`,
+Voilà, your EDITOR's Syntax ID ("file format" or "filetype"), and lang-list's `syntax_uid`,
 can now each be used to lookup editorconfig language-specific settings, e.g. in an editorconfig
-group named say "`[: syntax_uid=java]`";
+group named say "`[: syntax_uid=[java,json]]`";
 
 And the corollary, an editorconfig file-group setting for `syntax` can ensure the correct syntax
 highlighting for those files in your editor.
@@ -288,7 +288,7 @@ syntax = bash
 indent_size = 4
 
 # use this if you are happy with your EDITOR's auto detection for Java-syntax files:
-[: syntax_uid=java]  # exact .editorconfig "group syntax" TBD
+[: syntax_uid=[java,json]]  # exact .editorconfig "group syntax" TBD
 indent_size = 3
 
 # and if your editor does not properly auto detect Java-syntax files, add this:
@@ -362,8 +362,8 @@ particular the file contains the following YAML mapping keys:
  - Do NOT include the alias and unknown groups (the first two syntax uid groups).
  - Each `$syntax_uid` contains ONLY the `{name: {$LANG: "..."}}` map
  - That is, remove all fields other than the `name` map, such as `family`, `successor`,
-   `influenced_by` and `supercedes`, and comments (except for the section dividers and copyright
-   header line) should also be removed.
+   `influenced_by` and `supercedes`, `run`,
+   and remove comments (except for the section dividers and copyright header line).
  - See `templates/syntax_uids.yaml` for an example to start from (copy this file and edit
    accordingly), but do note that entries in the root `syntax_uids.yaml` will be added, and some
    changed, over time;
@@ -403,7 +403,8 @@ See also:
  - <https://github.com/garabik/grc>
  - <https://userstyles.org/?utm_campaign=stylish_homepage>
  - <https://userstyles.org/styles/70979/github-better-sized-tabs-in-code>, or better yet, the
-   same plugin but configured to apply to all websites:
-   <http://userstyles.org/styles/89425/all-code-has-custom-tab-size> ; experiencing gratitude in
-   browser TAB indent_size :)
+   similar style but configured to apply to all websites:
+   <http://userstyles.org/styles/89425/all-code-has-custom-tab-size> (I suggest configure, add
+   style block, duplication the "code" block to be a "pre" block, now we're cooking) ;
+   experiencing gratitude in browser TAB indent_size :)
 
