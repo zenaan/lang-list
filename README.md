@@ -27,6 +27,8 @@ Syntax categories include:
  - data representation formats
  - protocol formats
 
+
+
 ## Contents
 
  - [Background](#user-content-background)
@@ -43,6 +45,8 @@ Syntax categories include:
  - [License](#user-content-license)
  - [See also](#user-content-see-also)
 
+
+
 ## Background
 
 [EditorConfig](https://editorconfig.org/) could use a `syntax_uid` for mapping that which is
@@ -58,7 +62,7 @@ File extensions are far from unique - there are 1000s, possibly 10s of 1000s.
 The concept "file type" or "[file format](https://en.wikipedia.org/wiki/File_format)" includes
 concepts such as file extension, encoding, and textual vs binary representation; e.g. an "XML
 file" may be stored as a "plain text" file which may be encoded say in UTF-8 or UTF-16LE, and
-further it may be stored in a compressed format, either textual or binary (".zip" for one simple
+further it may be stored in a compressed format, either textual or binary (".zip" for one
 binary compression format example).
 
 Given an arbitrary file, there are many ways to [identify file
@@ -71,6 +75,7 @@ combination of the following or other file type identification systems:
  - MIME types and other 'standard' mappings
  - operating system specific type-codes
  - operating system- and filesystem-specific extended attributes
+ - declaration
 
 The [EditorConfig](http://editorconfig.org/) project, in particular
 [editorconfig/editorconfig#190](https://github.com/editorconfig/editorconfig/issues/190)
@@ -79,6 +84,8 @@ inspired the `lang-list`.
 
 The initial creation has been some rather tedious effort - from here the list should be
 relatively stable, broadly applicable, and easy to maintain and translate.
+
+
 
 ## Data Structure
 
@@ -89,7 +96,7 @@ application, named `${APPNAME}.yaml` .
 
 Boolean values may be `true` or `false` only.
 
-The lang-list data structures are as follows:
+The `lang-list` data structures/ schema, are/ is as follows:
 
 **A.** **`syntax_uids`** (`syntax_uids.yaml`): _map_, keyed by field name:
 1. `protocol`: _integer_, currently `0`, monotonically increasing if necessary
@@ -102,7 +109,8 @@ The lang-list data structures are as follows:
 1. `unknown`: _boolean_, optional, `true` if this uid is not (yet) properly identified,
    `false` otherwise or if not present
 1. `alias_of`: _string_, optional, MUST be non-empty if present; if present,
-   this field's value is the `syntax_uid` and its key is an alias of that uid
+   this field's value is the `syntax_uid` of the "primary" or "parent" syntax, of which the
+   present uid is an alias
 1. `deprecated`: _boolean_, optional, `true` if this `syntax_uid` is deprecated,
    `false` otherwise or if not present;
    `deprecated` MUST only be present if `alias_of` is also present
@@ -110,8 +118,8 @@ The lang-list data structures are as follows:
    if present the value is the list of `syntax_uid`s of which this syntax is associated
 1. **`name`**: _map_ keyed by [IETF BCP 47 language tag](https://en.wikipedia.org/wiki/IETF_language_tag)
    (a _string_ identified herein as `$LANG`),
-   with a minimum inclusion of "`{name: {**en**: "${English_syntax_name}"}}`",
-   include _only_ the LANG **`en`** in the root `syntax_uids.yaml` file,
+   with a minimum inclusion of "`{name: {en: "${English_syntax_name}"}}`",
+   include **_only_** the LANG **`en`** in the root `syntax_uids.yaml` file,
    `name` is optional in the case of an alias or unknown `syntax_uid`,
    **mandatory** otherwise
 1. `supercedes`: _list_ of _string_ (each a `syntax_uid`), optional,
@@ -132,8 +140,9 @@ The lang-list data structures are as follows:
 **D.** **`syntax_uid`** (`app_map . syntax_uid_to . $syntax_uid`): _map_, keyed by field name:
 1. `map`: _string_, mandatory, the application's syntax name corresponding to this `syntax_uid`
 1. `run`: _list_ of _string_, optional, a list of commands and/ or settings to apply,
-   in combination with the `map` value,
-   in order to cause `syntax_uid` to apply
+   in combination with the `map` value, in order to cause `syntax_uid` to be applied
+
+
 
 ## Lookup Protocol Functions
 
@@ -210,7 +219,7 @@ end str_to_syntax_uid
 
 ```dylan
 define function str_to_app_sid (STR :: <string>)
-	// Convert STRing to app syntax id
+	// Convert STRing to app Syntax ID
 
 	syntax_uid := str_to_syntax_uid($STR)
 	if syntax_uid == NULL
@@ -221,7 +230,7 @@ define function str_to_app_sid (STR :: <string>)
 	app_sid := app_map . syntax_uid_to . $syntax_uid
 	if app_sid == NULL
 	then
-		error("$APP does not support syntax_uid '$STR'")
+		error("$EDITOR does not support syntax_uid '$STR'")
 		return NULL
 	end if
 
@@ -244,11 +253,12 @@ define function app_sid_to_syntax_uid (SID :: <string>)
 		end if
 	end foreach
 
-	error("$APP syntax id '$SID' not found in syntax_uid map")
+	error("$EDITOR syntax id '$SID' not found in $EDITOR's syntax uid map")
 	return NULL
 
 end app_sid_to_syntax_uid
 ```
+
 
 ## Example with EditorConfig
 
@@ -273,6 +283,7 @@ group named say "`[: syntax_uid=[java,json]]`";
 
 And the corollary, an editorconfig file-group setting for `syntax` can ensure the correct syntax
 highlighting for those files in your editor.
+
 
 ### Example:
 
@@ -299,6 +310,8 @@ syntax_uid = java
 Note: The `syntax_uid.yaml` file is not normally loaded by editorconfig plugins, only the
 `app_maps/$EDITOR.yaml` file should be needed.
 
+
+
 ## Jobs
 
 NOTE: THIS IS A PROPOSAL/proof-of-concept only, it is NOT yet implemented.
@@ -315,14 +328,18 @@ Find happiness in gratitude.
 To translate `syntax_uid` names, see section "Localisation..." below.
 Find happiness in gratitude.
 
+
+
 ## Indentation
 
 YAML files per specification, are unfortunately space indented (control freaks will control in
-freaky ways). Although some (many?) YAML parsers may treat tabs as spaces, `languages.yaml`
+freaky ways). Although some (many?) YAML parsers may treat tabs as spaces, `syntax_uids.yaml`
 shall be a YAML specification compliant file. See here:
 
  - https://stackoverflow.com/questions/19975954/a-yaml-file-cannot-contain-tabs-as-indentation
  - http://yaml.org/faq.html
+
+
 
 ## Localisation
 
@@ -341,7 +358,10 @@ file, but in the appropriate `l10n/${LANG}/syntax_uids.yaml` file, and similarly
 Such localisation files must be:
  - `UTF-8` encoded
  - "three space chars" indented
- - For `.yaml` files translations, YAML files with the same structure as the original file.
+ - For `.yaml` files translations, YAML files with the same structure as the original file, but
+   only the necessary content included - do NOT include data that is not being translated, just
+   maintain the same structure and keep the same field names (the part to the left of the colon
+   `:`).
 
 `$LANG` is the IETF BCP 47 language tag identifying the corresponding localized human language.
 For information about the `IETF BCP 47` "human language" tag, see:
@@ -352,22 +372,27 @@ For information about the `IETF BCP 47` "human language" tag, see:
  - <https://salsa.debian.org/iso-codes-team/iso-codes>
  - <https://stackoverflow.com/questions/2511076/which-iso-format-should-i-use-to-store-a-users-language-code>
 
-Each localization file must have the same structure as `languages.yaml` but less content. In
-particular the file contains the following YAML mapping keys:
+Each localization file must have the same structure as `syntax_uids.yaml` but less content.  In
+particular your translated file contains the following YAML mapping keys:
 
- - `protocol: 0` - _integer_, mandatory
- - `version: 0` - _integer_, mandatory, starts at `0`, is the version for this localisation file
- - `name: {$LANG: "..."}` - _string_, optional, translation of "computer language syntax UID"
- - `uids:` - _map_, mandatory, keyed by `$syntax_uid`
+ - `protocol: 0` - _integer_, mandatory.
+ - `version: 0` - _integer_, mandatory, starts at `0`, is the version for this localisation
+   file.
+ - `name: {$LANG: "..."}` - _string_, mandatory, translation of the phrase "computer language
+   syntax UID".
+ - `uids:` - _map_, mandatory, keyed by `$syntax_uid`.
  - Do NOT include the alias and unknown groups (the first two syntax uid groups).
- - Each `$syntax_uid` contains ONLY the `{name: {$LANG: "..."}}` map
+ - Each `$syntax_uid` in the `uids` map  contains ONLY the `{name: {$LANG: "..."}}` map, where
+   `...` is replaced with your translation of the name of this syntax/language.
  - That is, remove all fields other than the `name` map, such as `family`, `successor`,
    `influenced_by` and `supercedes`, `run`,
-   and remove comments (except for the section dividers and copyright header line).
- - See `templates/syntax_uids.yaml` for an example to start from (copy this file and edit
-   accordingly), but do note that entries in the root `syntax_uids.yaml` will be added, and some
-   changed, over time;
+   and remove comments (but keep the section dividers and the copyright header line in English,
+   and add a second, translated version of the copyright header line).
+ - See `templates/syntax_uids.yaml` for an example to start from, but do note that entries in
+   the root `syntax_uids.yaml` file will be added and changed over time;
    `git` commands can be used to identify such differences.
+
+
 
 ## Feature requests and support
 
@@ -380,16 +405,18 @@ please do _not_ add "+1"s or "me too" comments.
 
 You may set your GitHub settings to receive emails for updates on issues you are subscribed to.
 
+
+
 ## License
 
 `lang-list` is licensed by the `GNU Lesser General Public License version 3` aka `LGPL3`.
 
 The LGPL reflects the need for lang-list to be usable as a library in relation to any other
-software license.
+software licenses.
+
+
 
 ## See also
-
-See also:
 
  - <https://github.com/editorconfig/editorconfig/wiki/%5BDevelopment%5D-Discussion-of-language-filetype-support>
  - <https://github.com/github/linguist/blob/master/lib/linguist/languages.yml>
@@ -405,6 +432,6 @@ See also:
  - <https://userstyles.org/styles/70979/github-better-sized-tabs-in-code>, or better yet, the
    similar style but configured to apply to all websites:
    <http://userstyles.org/styles/89425/all-code-has-custom-tab-size> (I suggest configure, add
-   style block, duplication the "code" block to be a "pre" block, now we're cooking) ;
+   style block, duplicate the "code" block to be a "pre" block, now we're cooking) ;
    experiencing gratitude in browser TAB indent_size :)
 

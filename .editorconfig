@@ -14,7 +14,7 @@ indent_style = tab
 # reasonably on GitHub - apologies if you "Live and die by the 8 char TAB, and nothing but the 8
 # char TAB", but you'll need to find a workaround - one good solution would be a per-browser
 # setting, so the end user can change the (default) tab width setting, browser-wide. :
-indent_size  = 4
+#indent_size  = 4 - this does NOT work - see links in README for browser plugin
 
 # it IS $CURRENT_YEAR already :)
 max_line_length = 96
