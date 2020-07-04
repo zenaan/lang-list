@@ -382,6 +382,7 @@ particular your translated file contains the following YAML mapping keys:
    syntax UID".
  - `uids:` - _map_, mandatory, keyed by `$syntax_uid`.
  - Do NOT include the alias and unknown groups (the first two syntax uid groups).
+ - You should not include languages for which the translation is the same as the English name.
  - Each `$syntax_uid` in the `uids` map  contains ONLY the `{name: {$LANG: "..."}}` map, where
    `...` is replaced with your translation of the name of this syntax/language.
  - That is, remove all fields other than the `name` map, such as `family`, `successor`,
